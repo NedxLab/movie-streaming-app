@@ -21,7 +21,7 @@ const WorldBest = () => {
         </div>
         <div className="row justify-content-center mt-4">
           {movieSeries.map((movie, i) => (
-            <div className="col-xl-3 col-lg-4 col-sm-6">
+            <div className="col-xl-3 col-lg-4 col-sm-6" key={i}>
               <div className="movie-item mb-50">
                 <div className="movie-poster">
                   <a href="movie-details.html">

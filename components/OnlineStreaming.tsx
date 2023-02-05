@@ -68,7 +68,7 @@ const OnlineStream = () => {
           >
             <div className="ucm-active flex overflow-x-auto">
               {movieData.map((movie, i) => (
-                <div className="movie-item m-4 ">
+                <div className="movie-item m-4 " key={i}>
                   <div className=" ">
                     <a href="#">
                       <Image

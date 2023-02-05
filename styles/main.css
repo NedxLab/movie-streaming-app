@@ -547,6 +547,10 @@ video {
   }
 }
 
+.collapse {
+  visibility: collapse;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -575,6 +579,10 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-60 {
   height: 15rem;
 }
@@ -601,6 +609,10 @@ video {
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
