@@ -11,6 +11,7 @@ import hit from "../public/hit.jpg";
 import thor from "../public/thor.jpg";
 import hall from "../public/hall.jpg";
 import turn from "../public/turn.jpg";
+import ofus from "../public/ofus.jpg";
 
 const movieData = [
   {
@@ -129,6 +130,15 @@ const movieData = [
     duration: "250 min",
     year: "2021",
     rating: "3.5",
+  },
+  {
+    title: "Mad Max",
+    image: ofus,
+    resolution: "HD",
+    genre: "shows",
+    duration: "680 min",
+    year: "2022",
+    rating: "4.5",
   },
 ];
 

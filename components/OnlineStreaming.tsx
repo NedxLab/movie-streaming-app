@@ -1,7 +1,23 @@
 import movieData from "./stream";
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
 
 const OnlineStream = () => {
+  const [selectedStream, setSelectedStream] = useState([]);
+  const [active, setActive] = useState("");
+  var movieSeries;
+  const streamGenre = (genres) => {
+    setActive(genres);
+    if (genres === "all") {
+      movieSeries = movieData;
+    } else {
+      movieSeries = movieData.filter((movie) => movie.genre === genres);
+    }
+    setSelectedStream(movieSeries);
+  };
+  useEffect(() => {
+    streamGenre("all");
+  }, []);
   return (
     <section className="ucm-area ucm-bg">
       <div className="ucm-bg-shape"></div>
@@ -17,43 +33,34 @@ const OnlineStream = () => {
             <div className="ucm-nav-wrap">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link active"
-                    id="tvShow-tab"
-                    data-toggle="tab"
-                    href="#tvShow"
-                    role="tab"
-                    aria-controls="tvShow"
-                    aria-selected="true"
+                  <button
+                    className={
+                      active === "all" ? "active nav-link" : "nav-link"
+                    }
+                    onClick={() => streamGenre("all")}
                   >
-                    TV Shows
-                  </a>
+                    All Movies
+                  </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link"
-                    id="movies-tab"
-                    data-toggle="tab"
-                    href="#movies"
-                    role="tab"
-                    aria-controls="movies"
-                    aria-selected="false"
+                  <button
+                    className={
+                      active === "shows" ? "active nav-link" : "nav-link"
+                    }
+                    onClick={() => streamGenre("shows")}
                   >
-                    Movies
-                  </a>
+                    Shows
+                  </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <a
-                    className="nav-link"
-                    id="anime-tab"
-                    data-toggle="tab"
-                    href="#anime"
-                    role="tab"
-                    aria-controls="anime"
-                    aria-selected="false"
+                  <button
+                    className={
+                      active === "series" ? "active nav-link" : "nav-link"
+                    }
+                    onClick={() => streamGenre("series")}
                   >
-                    Anime
-                  </a>
+                    Series
+                  </button>
                 </li>
               </ul>
             </div>
@@ -67,7 +74,7 @@ const OnlineStream = () => {
             aria-labelledby="tvShow-tab"
           >
             <div className="ucm-active flex overflow-x-auto">
-              {movieData.map((movie, i) => (
+              {selectedStream.map((movie, i) => (
                 <div className="movie-item m-4 " key={i}>
                   <div className=" ">
                     <a href="#">

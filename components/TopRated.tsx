@@ -6,7 +6,9 @@ import React, { useState, useEffect } from "react";
 const TopRated = () => {
   var topRatedMovies = [];
   const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
+  const [active, setActive] = useState("");
   const filterTopRatedMovies = (genre) => {
+    setActive(genre);
     topRatedMovies = [];
     var movies = movieData.filter((movie) => movie.genre === genre);
 
@@ -63,13 +65,13 @@ const TopRated = () => {
           <div className="col-lg-8">
             <div className="tr-movie-menu-active text-center">
               <button
-                className="active"
+                className={active === "all" ? "active" : ""}
                 onClick={() => filterTopRatedMovies("all")}
               >
                 All
               </button>
               <button
-                className=""
+                className={active === "series" ? "active" : ""}
                 onClick={() => {
                   filterTopRatedMovies("series");
                 }}
@@ -77,13 +79,13 @@ const TopRated = () => {
                 Series
               </button>
               <button
-                className=""
+                className={active === "action" ? "active" : ""}
                 onClick={() => filterTopRatedMovies("action")}
               >
                 Action
               </button>
               <button
-                className=""
+                className={active === "shows" ? "active" : ""}
                 onClick={() => filterTopRatedMovies("shows")}
               >
                 shows
