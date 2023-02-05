@@ -20,7 +20,7 @@ const movieData = [
     genre: "action",
     duration: "128 min",
     year: "2022",
-    rating: "4.5",
+    rating: "4.4",
   },
   {
     title: "Andhaghaaram Tamil",
@@ -83,7 +83,7 @@ const movieData = [
     genre: "series",
     duration: "600 min",
     year: "2023",
-    rating: "4.5",
+    rating: "4.6",
   },
   {
     title: "K.G.F",

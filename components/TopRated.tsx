@@ -1,21 +1,52 @@
 import movieData from "./stream";
 import Image from "next/image";
 import { log } from "console";
+import React, { useState, useEffect } from "react";
 
 const TopRated = () => {
-  let topRated = movieData.map((movie, index) => {
-    return parseFloat(movie.rating);
-  });
-  topRated = topRated.sort(function (a, b) {
-    return a - b;
-  });
-  topRated = topRated.slice(Math.max(topRated.length - 5, 0));
-  const filteredMovies = topRated.map((newmovie) => {
-    return movieData.filter((movie) => parseFloat(movie.rating) === newmovie);
-    // console.log(newmovie);
-  });
+  var topRatedMovies = [];
+  const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
+  const filterTopRatedMovies = (genre) => {
+    topRatedMovies = [];
+    var movies = movieData.filter((movie) => movie.genre === genre);
 
-  console.log(filteredMovies);
+    movies = movies.length < 1 ? movieData : movies;
+    let topRated = movies.map((movie, index) => {
+      return parseFloat(movie.rating);
+    });
+    topRated = topRated.sort(function (a, b) {
+      return b - a;
+    });
+
+    topRated = topRated.slice(0, 4);
+    // console.log(topRated);
+
+    var filteredMovies = topRated.map((newmovie) => {
+      // console.log(newmovie);
+      return movies.filter((movie) => parseFloat(movie.rating) === newmovie);
+    });
+
+    filteredMovies.map((movie) => {
+      if (Array.isArray(movie)) {
+        movie.map((movie) => {
+          topRatedMovies.push(movie);
+        });
+      } else {
+        topRatedMovies.push(movie);
+      }
+    });
+    // console.log([...new Set(topRatedMovies)]);
+    topRatedMovies = [...new Set(topRatedMovies)];
+    // console.log(topRatedMovies);
+
+    // return (
+    topRatedMovies = topRatedMovies.slice(0, 4);
+    setFilteredTopRatedMovies(topRatedMovies);
+    // );
+  };
+  useEffect(() => {
+    filterTopRatedMovies("all");
+  }, []);
 
   return (
     <section className="top-rated-movie tr-movie-bg">
@@ -24,30 +55,44 @@ const TopRated = () => {
           <div className="col-lg-8">
             <div className="section-title text-center mb-50">
               <span className="sub-title">ONLINE STREAMING</span>
-              <h2 className="title">Top Rated Movies</h2>
+              <h2 className="title text-dark">Top Rated Movies</h2>
             </div>
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="tr-movie-menu-active text-center">
-              <button className="active" data-filter="*">
-                TV Shows
+              <button
+                className="active"
+                onClick={() => filterTopRatedMovies("all")}
+              >
+                All
               </button>
-              <button className="" data-filter=".cat-one">
-                Movies
+              <button
+                className=""
+                onClick={() => {
+                  filterTopRatedMovies("series");
+                }}
+              >
+                Series
               </button>
-              <button className="" data-filter=".cat-two">
-                documentary
+              <button
+                className=""
+                onClick={() => filterTopRatedMovies("action")}
+              >
+                Action
               </button>
-              <button className="" data-filter=".cat-three">
-                sports
+              <button
+                className=""
+                onClick={() => filterTopRatedMovies("shows")}
+              >
+                shows
               </button>
             </div>
           </div>
         </div>
         <div className="row tr-movie-active">
-          {movieData.map((movie, i) => (
+          {filteredTopRatedMovies.map((movie, i) => (
             <div
               key={i}
               className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
