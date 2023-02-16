@@ -12,8 +12,16 @@ import MovieAd from "../components/MovieAd";
 import TopRated from "../components/TopRated";
 import Live from "../components/Live";
 import WorldBest from "../components/WorldBest";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getMovies } from "../redux/features/movieSlice";
 
 export default function Home() {
+  // const { loading } = useSelector((store) => store.movies);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMovies());
+  }, []);
   return (
     <>
       <Head>
