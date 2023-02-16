@@ -9,8 +9,6 @@ const MovieAd = () => {
   const [noMovies, setNoMovies] = useState(false);
   const [randomNumber, setRandomNumber] = useState();
 
-  console.log(fetchedMovies);
-
   useEffect(() => {
     if (fetchedMovies.length < 1) {
       setNoMovies(false);

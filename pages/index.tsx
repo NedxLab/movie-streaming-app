@@ -19,9 +19,7 @@ import { getMovies } from "../redux/features/movieSlice";
 export default function Home() {
   // const { loading } = useSelector((store) => store.movies);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getMovies());
-  }, []);
+
   return (
     <>
       <Head>
