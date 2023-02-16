@@ -2,10 +2,13 @@ import movieData from "./stream";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../redux/store";
 
 const OnlineStream = () => {
-  const { fetchedMovies } = useSelector((store) => store.movies);
+  const { fetchedMovies } = useSelector((store: RootState) => store.movies);
   const dispatch = useDispatch();
+  console.log(fetchedMovies);
+
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
   return (
