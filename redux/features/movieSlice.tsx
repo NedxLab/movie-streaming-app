@@ -3,9 +3,8 @@ import axios from "axios";
 
 const baseUrl = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
-console.log(API_KEY);
 
-const url = `${baseUrl}/trending/all/week?api_key=${API_KEY}&language=en-US`;
+const url = `${baseUrl}/movie/upcoming?api_key=${API_KEY}&language=en-US`;
 
 const initialState = {
   fetchedMovies: [],
@@ -22,16 +21,19 @@ export const getMovies = createAsyncThunk("movies/getMovies", async () => {
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    getMovieBanner: (state, action) => {
+      state.fetchedMovies = action.payload.results;
+      return state.fetchedMovies;
+    },
+  },
   extraReducers: {
     [getMovies.pending]: (state) => {
       state.loading = true;
     },
-    [getMovies.fulfilled]: (state, payload) => {
-      console.log(action);
-
+    [getMovies.fulfilled]: (state, action) => {
       state.loading = false;
-      state.fetchedMovies = action.payload;
+      state.fetchedMovies = action.payload.results;
     },
     [getMovies.rejected]: (state, action) => {
       state.loading = false;
