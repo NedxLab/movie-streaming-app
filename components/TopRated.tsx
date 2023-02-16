@@ -76,7 +76,7 @@ const TopRated = () => {
           </div>
         </div>
         <div className="row tr-movie-active">
-          {topRatedMovies.map((movie: string[], i: number) => (
+          {topRatedMovies.map((movie, i) => (
             <div
               key={i}
               className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"

@@ -7,7 +7,7 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 const baseUrl = "https://api.themoviedb.org/3";
-// const API_KEY = process.env.NEXT_MOVIE_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
 const imageUrl = "https://image.tmdb.org/t/p/original";
 const MovieDetails = ({ movies }) => {
