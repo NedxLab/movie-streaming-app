@@ -1,13 +1,14 @@
 import Image from "next/image";
-import project from "../public/project.jpg";
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
+import type { RootState, AppDispatch } from "../redux/store";
+import { IMovieData } from "../types/types";
 
 const MovieAd = () => {
-  const { fetchedMovies } = useSelector((store) => store.movies);
+  const { fetchedMovies } = useSelector((store: RootState) => store.movies);
   const imageUrl = "https://image.tmdb.org/t/p/original";
   const [noMovies, setNoMovies] = useState(false);
-  const [randomNumber, setRandomNumber] = useState();
+  const [randomNumber, setRandomNumber] = useState<number>(0);
 
   useEffect(() => {
     if (fetchedMovies.length < 1) {
@@ -34,18 +35,14 @@ const MovieAd = () => {
                   height={400}
                   alt="movie trailer"
                 />
-
-                <a href="/" className="download-btn" download>
-                  Download <img src="fonts/download.svg" alt="" />
-                </a>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="services-content-wrap">
                 <div className="section-title title-style-two mb-20">
-                  <span className="sub-title">Our Services</span>
+                  <span className="sub-title">featured movie</span>
                   <h2 className="title">
-                    Download Your Shows and Watch Offline.
+                    {fetchedMovies[randomNumber].original_title}
                   </h2>
                 </div>
                 <p>{fetchedMovies[randomNumber].overview}</p>
