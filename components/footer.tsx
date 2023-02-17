@@ -1,3 +1,12 @@
+import Image from "next/image";
+import logo from "../public/bg/logo.png";
+import {
+  FaFacebookF,
+  FaLinkedin,
+  FaTwitter,
+  FaPinterest,
+} from "react-icons/fa";
+
 const Footer = () => {
   return (
     <footer>
@@ -7,8 +16,14 @@ const Footer = () => {
             <div className="row align-items-center">
               <div className="col-lg-3">
                 <div className="footer-logo">
-                  <a href="index.html">
-                    <img src="../public/logo/logo.png" alt="" />
+                  <a href="/">
+                    <Image
+                      src={logo}
+                      width={100}
+                      height={100}
+                      alt="Logo"
+                      className="inline self-center"
+                    />
                   </a>
                 </div>
               </div>
@@ -70,22 +85,22 @@ const Footer = () => {
                   <ul>
                     <li>
                       <a href="#">
-                        <i className="fab fa-facebook-f"></i>
+                        <FaFacebookF className="text-base inline" />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i className="fab fa-twitter"></i>
+                        <FaTwitter className="text-base inline" />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i className="fab fa-pinterest-p"></i>
+                        <FaPinterest className="text-base inline" />
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i className="fab fa-linkedin-in"></i>
+                        <FaLinkedin className="text-base inline" />
                       </a>
                     </li>
                   </ul>
