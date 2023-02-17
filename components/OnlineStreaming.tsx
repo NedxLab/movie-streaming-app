@@ -1,12 +1,12 @@
-import movieData from "./stream";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../redux/store";
+import { IMovieData } from "../types/types";
 
 const OnlineStream = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   console.log(fetchedMovies);
 
   const imageUrl = "https://image.tmdb.org/t/p/original";
@@ -31,7 +31,7 @@ const OnlineStream = () => {
             aria-labelledby="tvShow-tab"
           >
             <div className="ucm-active flex overflow-x-auto">
-              {fetchedMovies.map((movie, i) => (
+              {fetchedMovies.map((movie: IMovieData, i: number) => (
                 <div className="movie-item m-4 " key={i}>
                   <div className=" ">
                     <a href="#">
@@ -39,7 +39,7 @@ const OnlineStream = () => {
                         src={imageUrl + movie.poster_path}
                         alt="image"
                         height={600}
-                        width={600}
+                        width={400}
                         className="rounded-2xl min-w-[14rem] max-w-[14rem] w-56 h-60"
                       />
                     </a>
