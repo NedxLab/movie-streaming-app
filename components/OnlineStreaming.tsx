@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import { AiFillStar } from "react-icons/ai";
+import Link from "next/link";
 
 const OnlineStream = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
@@ -82,7 +83,7 @@ const OnlineStream = () => {
                 {fetchedMovies.map((movie: IMovieData, i: number) => (
                   <div className="movie-item movie-item-two mb-30" key={i}>
                     <div className="movie-poster">
-                      <a href="/">
+                      <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                         <Image
                           src={imageUrl + movie.poster_path}
                           alt="image"
@@ -90,7 +91,7 @@ const OnlineStream = () => {
                           width={400}
                           className="rounded-2xl min-w-[14rem] max-w-[14rem] w-56 h-60"
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="movie-content">
                       <div className="rating text-center flex flex-row space-x-1">

@@ -1,29 +1,21 @@
-import { log } from "console";
-import { useRouter } from "next/router";
+import { IMovieData } from "../../types/types";
 import Image from "next/image";
-import wallpaper from "../../public/bg/movie_details_bg.jpg";
-import movieData from "../../components/stream";
-import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
-const baseUrl = "https://api.themoviedb.org/3";
-const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
+import { GetServerSideProps } from "next";
 
+const baseUrl = "https://api.themoviedb.org/3/movie";
+const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 const imageUrl = "https://image.tmdb.org/t/p/original";
-const MovieDetails = ({ movies }) => {
-  const [data, setData] = useState([]);
-  const router = useRouter();
-  const url = router.query.slug;
-  console.log(movies.results);
-  movies = movies.results;
-  console.log(movies[0]);
+
+const MovieDetails = ({ movies, similar }) => {
+  console.log(similar);
 
   return (
     <main>
       <section
         className="movie-details-area"
         style={{
-          backgroundImage: `url(${wallpaper.src})`,
+          backgroundImage: `url(${imageUrl + movies.backdrop_path})`,
         }}
       >
         <div className="container">
@@ -31,28 +23,22 @@ const MovieDetails = ({ movies }) => {
             <div className="col-xl-3 col-lg-4">
               <div className="movie-details-img">
                 <Image
-                  src={imageUrl + movies[0].poster_path}
+                  src={imageUrl + movies.poster_path}
                   width={800}
                   height={800}
                   alt="movie"
                 />
-                <a
-                  href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                  className="popup-video"
-                >
-                  <img src="img/images/play_icon.png" alt="" />
-                </a>
               </div>
             </div>
             <div className="col-xl-6 col-lg-8">
               <div className="movie-details-content">
                 <h5>New Episodes</h5>
-                {/* <h2 className="capitalize">{movie[0].title}</h2> */}
+                <h2 className="capitalize">{movies.title}</h2>
                 <div className="banner-meta">
                   <ul>
                     <li className="quality">
                       <span>Pg 18</span>
-                      {/* <span>{movie[0].resolution}</span> */}
+                      <span>{movies.resolution}</span>
                     </li>
                     <li className="category">
                       <a href="#">Romance,</a>
@@ -60,20 +46,15 @@ const MovieDetails = ({ movies }) => {
                     </li>
                     <li className="release-time">
                       <span>
-                        {/* <i className="far fa-calendar-alt"></i> {movie[0].year} */}
+                        <i className="far fa-calendar-alt"></i> {movies.year}
                       </span>
                       <span>
-                        {/* <i className="far fa-clock"></i> {movie[0].duration} */}
+                        <i className="far fa-clock"></i> {movies.duration}
                       </span>
                     </li>
                   </ul>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consecetur adipiscing elseddo
-                  eiusmod tempor.There are many variations of passages of lorem
-                  Ipsum available, but the majority have suffered alteration in
-                  some injected humour.
-                </p>
+                <p className="text-base">{movies.overview} </p>
                 <div className="movie-details-prime">
                   <ul>
                     <li className="share">
@@ -96,15 +77,6 @@ const MovieDetails = ({ movies }) => {
                   </ul>
                 </div>
               </div>
-            </div>
-            <div className="movie-details-btn">
-              <a
-                href="img/poster/movie_details_img.jpg"
-                className="download-btn"
-                download=""
-              >
-                Download <img src="fonts/download.svg" alt="" />
-              </a>
             </div>
           </div>
         </div>
@@ -343,18 +315,23 @@ const MovieDetails = ({ movies }) => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="section-title text-center mb-50">
-                <span className="sub-title">Best TV Series</span>
-                <h2 className="title">World Best TV Series</h2>
+                <span className="sub-title">Watch More?</span>
+                <h2 className="title text-dark">Similar movies</h2>
               </div>
             </div>
           </div>
-          <div className="row justify-content-center">
-            {data.map((series, i) => (
-              <div className="col-xl-3 col-lg-4 col-sm-6" key={i}>
-                <div className="movie-item mb-50">
+          <div className="row justify-content-center m-7">
+            {similar.map((series: IMovieData, i: number) => (
+              <div className="col-xl-3 col-lg-4 col-sm-6 " key={i}>
+                <div className="movie-item mb-5">
                   <div className="movie-poster">
                     <a href="movie-detals.html">
-                      <Image src={`${baseUrl}${series.backdrop_path}`} />
+                      <Image
+                        src={imageUrl + series.poster_path}
+                        width={800}
+                        height={800}
+                        alt="movie"
+                      />
                     </a>
                   </div>
                   <div className="movie-content">
@@ -418,33 +395,30 @@ const MovieDetails = ({ movies }) => {
     </main>
   );
 };
-export const getStaticProps: GetStaticProps = async (context) => {
-  // const movie = movieData.filter(
-  //   (movies) => movies.title.replace(/\s+/g, "-").toLowerCase() === url
-  // );
-
-  // Axios.get(`${baseUrl}/trending/all/week?api_key=${API_KEY}&language=en-US`)
-  //   .then((response) => {
-  //     // handle success
-  //     // setData(response.data.results);
-  //     const movies = response.data.results;
-  //     return movies;
-  //   })
-  //   .catch((err) => console.log(err));
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // console.log(context);
+  const { params } = context;
+  console.log(params.slug);
+  // const router = useRouter();
+  let url = params.slug;
+  url = parseInt(url);
   const res = await fetch(
-    `${baseUrl}/trending/all/week?api_key=${API_KEY}&language=en-US`
+    `${baseUrl}/${url}?api_key=${API_KEY}&language=en-US`
   );
+  const similarResponse = await fetch(
+    `${baseUrl}/${url}/similar?api_key=${API_KEY}&language=en-US&page=1`
+  );
+
   const movies = await res.json();
+  let similar = await similarResponse.json();
+  similar = similar.results;
+
   return {
     props: {
       movies,
+      similar,
     },
   };
 };
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: "blocking", //indicates the type of fallback
-  };
-};
+
 export default MovieDetails;

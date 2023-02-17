@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
+import Link from "next/link";
 
 const WorldBest = () => {
   const { fetchedPopularMovies } = useSelector(
@@ -35,7 +36,7 @@ const WorldBest = () => {
               {fetchedPopularMovies.map((movie: IMovieData, i: number) => (
                 <div className="movie-item m-4 " key={i}>
                   <div className=" ">
-                    <a href="#">
+                    <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                       <Image
                         src={imageUrl + movie.poster_path}
                         alt="image"
@@ -43,7 +44,7 @@ const WorldBest = () => {
                         width={600}
                         className="rounded-2xl min-w-[14rem] max-w-[14rem] w-56 h-60"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="movie-content mt-3 ">
                     <div className="top">

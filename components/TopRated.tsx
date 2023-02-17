@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
+import Link from "next/link";
 
 const TopRated = () => {
   const { topRatedMovies } = useSelector(
@@ -85,17 +86,17 @@ const TopRated = () => {
               key={i}
               className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
             >
-              <div className="movie-item mb-3">
+              <div className="movie-item movie-item-two  mb-3">
                 <div className="movie-poster">
-                  <a href="movie-details.html">
+                  <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                     <Image
                       src={imageUrl + movie.poster_path}
                       alt="image"
                       width={600}
-                      height={400}
+                      height={300}
                       className="rounded-2xl h-96"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="movie-content">
                   <div className="top">
