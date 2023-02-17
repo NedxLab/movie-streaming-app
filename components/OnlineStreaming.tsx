@@ -82,7 +82,7 @@ const OnlineStream = () => {
                 {fetchedMovies.map((movie: IMovieData, i: number) => (
                   <div className="movie-item movie-item-two mb-30" key={i}>
                     <div className="movie-poster">
-                      <a href="movie-details.html">
+                      <a href="/">
                         <Image
                           src={imageUrl + movie.poster_path}
                           alt="image"
