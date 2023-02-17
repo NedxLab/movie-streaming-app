@@ -49,9 +49,9 @@ const WorldBest = () => {
                   <div className="movie-content mt-3 ">
                     <div className="top">
                       <h5 className="title capitalize text-dark">
-                        <a href="movie-details.html">
+                        <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                           {movie.original_title || movie.original_name}
-                        </a>
+                        </Link>
                       </h5>
                       <span className="date">{movie.release_date}</span>
                     </div>

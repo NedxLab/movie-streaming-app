@@ -102,9 +102,9 @@ const OnlineStream = () => {
                         <AiFillStar />
                       </div>
                       <h5 className="title">
-                        <a href="movie-details.html">
+                        <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                           {movie.original_title || movie.original_name}
-                        </a>
+                        </Link>
                       </h5>
                       <span className="rel">Adventure</span>
                       <div className="movie-content-bottom">

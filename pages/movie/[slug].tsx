@@ -2,13 +2,17 @@ import { IMovieData } from "../../types/types";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { GetServerSideProps } from "next";
+import firstBg from "../../public/bg/tv_series_bg02.jpg";
+import secondBg from "../../public/bg/episode_bg.jpg";
+import Link from "next/link";
 
 const baseUrl = "https://api.themoviedb.org/3/movie";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 const imageUrl = "https://image.tmdb.org/t/p/original";
 
-const MovieDetails = ({ movies, similar }) => {
-  console.log(similar);
+const MovieDetails = ({ movies, similar, release }) => {
+  release = release.slice(1, 6);
+  console.log(movies);
 
   return (
     <main>
@@ -86,7 +90,9 @@ const MovieDetails = ({ movies, similar }) => {
       {/* <!-- episode-area --> */}
       <section
         className="episode-area episode-bg"
-        data-background="img/bg/episode_bg.jpg"
+        style={{
+          backgroundImage: `url(${secondBg.src})`,
+        }}
       >
         <div className="container">
           <div className="row">
@@ -95,7 +101,7 @@ const MovieDetails = ({ movies, similar }) => {
                 <div className="episode-top-wrap">
                   <div className="section-title">
                     <span className="sub-title">ONLINE STREAMING</span>
-                    <h2 className="title">Watch Full Episode</h2>
+                    <h2 className="title">Find Your Location Release Date.</h2>
                   </div>
                   <div className="total-views-count">
                     <p>
@@ -111,159 +117,31 @@ const MovieDetails = ({ movies, similar }) => {
                           className="btn-block m-0 flex justify-between w-full"
                           type="button"
                         >
-                          <span className="text-left season">Season 2</span>
-                          <span className="video-count">5 Full Episodes</span>
+                          <span className="text-left season">Location</span>
+                          <span className="video-count">Release Dates</span>
                         </button>
                       </div>
                       <div className=" show" aria-labelledby="headingOne">
                         <div className="card-body">
                           <ul>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 1 - The
-                                World Is Purple
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 2 -
-                                Meaner Than Evil
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 3 - I
-                                Killed a Man Today
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 4 -
-                                Cowboys and Dreamers
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 5 -
-                                Freight Trains and Monsters
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="card">
-                      <div className="card-header" id="headingTwo">
-                        <button
-                          className="btn-block text-left collapsed"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#collapseTwo"
-                          aria-expanded="false"
-                          aria-controls="collapseTwo"
-                        >
-                          <span className="season">Season 1</span>
-                          <span className="video-count">5 Full Episodes</span>
-                        </button>
-                      </div>
-                      <div
-                        id="collapseTwo"
-                        className="collapse"
-                        aria-labelledby="headingTwo"
-                        data-parent="#accordionExample"
-                      >
-                        <div className="card-body">
-                          <ul>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 1 - The
-                                World Is Purple
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 2 -
-                                Meaner Than Evil
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 3 - I
-                                Killed a Man Today
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 4 -
-                                Cowboys and Dreamers
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
-                            <li>
-                              <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="popup-video"
-                              >
-                                <i className="fas fa-play"></i> Episode 5 -
-                                Freight Trains and Monsters
-                              </a>{" "}
-                              <span className="duration">
-                                <i className="far fa-clock"></i> 28 Min
-                              </span>
-                            </li>
+                            {release.map((releases, i) => (
+                              <li key={i}>
+                                <a href="/" className="popup-video">
+                                  <i className="fas fa-play"></i>
+                                  {releases.iso_3166_1} -{" "}
+                                  {releases.release_dates[0].note
+                                    ? releases.release_dates[0].note
+                                    : "Not yet announced"}
+                                </a>{" "}
+                                <span className="duration">
+                                  <i className="far fa-clock"></i>{" "}
+                                  {releases.release_dates[0].release_date.slice(
+                                    0,
+                                    -14
+                                  )}
+                                </span>
+                              </li>
+                            ))}
                           </ul>
                         </div>
                       </div>
@@ -274,7 +152,12 @@ const MovieDetails = ({ movies, similar }) => {
             </div>
             <div className="col-lg-4">
               <div className="episode-img">
-                <img src="img/images/episode_img.jpg" alt="" />
+                <Image
+                  src={imageUrl + movies.poster_path}
+                  width={800}
+                  height={800}
+                  alt="movie"
+                />
               </div>
             </div>
           </div>
@@ -282,23 +165,9 @@ const MovieDetails = ({ movies, similar }) => {
             <div className="col-12">
               <div className="movie-history-wrap">
                 <h3 className="title">
-                  About <span>History</span>
+                  About <span>{movies.original_title}</span>
                 </h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consecetur adipiscing elseddo
-                  eiusmod tempor.There are many variations of passages of lorem
-                  Ipsum available, but the majority have suffered alteration in
-                  some injected humour.There are many variations of passages of
-                  Lorem Ipsum available, but the majority have suffered
-                  alteration in some form, by injected humour, or randomised
-                  words which don't look even slightly believable. If you are
-                  going to use a passage of Lorem Ipsum, you need to be sure
-                  there isn't anything errassing hidden in the middle of text.
-                  All the Lorem Ipsum generators on the Internet tend to repeat
-                  predefined chunks as necessary, making this the first true
-                  generator on the Internet. It uses a dictionary of over 200
-                  Latin words, combined with a handful
-                </p>
+                <p className="text-lg">{movies.overview}</p>
               </div>
             </div>
           </div>
@@ -309,14 +178,16 @@ const MovieDetails = ({ movies, similar }) => {
       {/* <!-- tv-series-area --> */}
       <section
         className="tv-series-area tv-series-bg"
-        data-background="img/bg/tv_series_bg02.jpg"
+        style={{
+          backgroundImage: `url(${firstBg.src})`,
+        }}
       >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="section-title text-center mb-50">
                 <span className="sub-title">Watch More?</span>
-                <h2 className="title text-dark">Similar movies</h2>
+                <h2 className="title">Similar movies</h2>
               </div>
             </div>
           </div>
@@ -325,21 +196,21 @@ const MovieDetails = ({ movies, similar }) => {
               <div className="col-xl-3 col-lg-4 col-sm-6 " key={i}>
                 <div className="movie-item mb-5">
                   <div className="movie-poster">
-                    <a href="movie-detals.html">
+                    <Link href={`/movie/${encodeURIComponent(series.id)}`}>
                       <Image
                         src={imageUrl + series.poster_path}
                         width={800}
                         height={800}
                         alt="movie"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="movie-content">
                     <div className="top">
                       <h5 className="title">
-                        <a href="movie-details.html" className="text-dark">
+                        <Link href={`/movie/${encodeURIComponent(series.id)}`}>
                           {series.original_title}
-                        </a>
+                        </Link>
                       </h5>
                       <span className="date">2021</span>
                     </div>
@@ -396,27 +267,30 @@ const MovieDetails = ({ movies, similar }) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // console.log(context);
   const { params } = context;
-  console.log(params.slug);
-  // const router = useRouter();
-  let url = params.slug;
-  url = parseInt(url);
+
+  const url = params.slug;
   const res = await fetch(
     `${baseUrl}/${url}?api_key=${API_KEY}&language=en-US`
   );
   const similarResponse = await fetch(
     `${baseUrl}/${url}/similar?api_key=${API_KEY}&language=en-US&page=1`
   );
+  const releaseResponse = await fetch(
+    `${baseUrl}/${url}/release_dates?api_key=${API_KEY}&language=en-US&page=1`
+  );
 
   const movies = await res.json();
   let similar = await similarResponse.json();
   similar = similar.results;
+  let release = await releaseResponse.json();
+  release = release.results;
 
   return {
     props: {
       movies,
       similar,
+      release,
     },
   };
 };

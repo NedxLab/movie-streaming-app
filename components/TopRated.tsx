@@ -9,6 +9,8 @@ const TopRated = () => {
   const { topRatedMovies } = useSelector(
     (store: RootState) => store.topRatedMovies
   );
+  console.log(topRatedMovies);
+
   const newTopRatedMovies = topRatedMovies.slice(0, 8);
   const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
@@ -101,9 +103,9 @@ const TopRated = () => {
                 <div className="movie-content">
                   <div className="top">
                     <h5 className="title">
-                      <a href="/">
+                      <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
                         {movie.original_title || movie.original_name}
-                      </a>
+                      </Link>
                     </h5>
                     <span className="date">{movie.release_date}</span>
                   </div>
