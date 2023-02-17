@@ -41,10 +41,7 @@ export default function Home() {
       <Live />
       <WorldBest />
       <main>
-        <section
-          className="newsletter-area newsletter-bg"
-          style={{ backgroundImage: "url('../public/bg/newsletter_bg.jpg')" }}
-        >
+        <section className="newsletter-area newsletter-bg">
           <div className="container">
             <div className="newsletter-inner-wrap">
               <div className="row align-items-center">

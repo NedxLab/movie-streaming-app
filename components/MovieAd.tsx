@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
+import { GiSteampunkGoggles } from "react-icons/gi";
+import { TbDeviceTvOld } from "react-icons/tb";
 
 const MovieAd = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
@@ -50,25 +52,25 @@ const MovieAd = () => {
                   <ul>
                     <li>
                       <div className="icon">
-                        <i className="flaticon-television"></i>
+                        <TbDeviceTvOld className="text-5xl inline" />
                       </div>
                       <div className="content">
                         <h5>Enjoy on Your TV.</h5>
                         <p>
-                          Lorem ipsum dolor sit amet, consecetur adipiscing
-                          elit, sed do eiusmod tempor.
+                          No need for a Satellite, with us, be rest assured your
+                          TV won't be boring to watch.
                         </p>
                       </div>
                     </li>
                     <li>
                       <div className="icon">
-                        <i className="flaticon-video-camera"></i>
+                        <GiSteampunkGoggles className="text-5xl inline" />
                       </div>
                       <div className="content">
                         <h5>Watch Everywhere.</h5>
                         <p>
-                          Lorem ipsum dolor sit amet, consecetur adipiscing
-                          elit, sed do eiusmod tempor.
+                          Enjoy the best of movies at your comfort, anytime you
+                          want.
                         </p>
                       </div>
                     </li>

@@ -8,6 +8,7 @@ const TopRated = () => {
   const { topRatedMovies } = useSelector(
     (store: RootState) => store.topRatedMovies
   );
+  const newTopRatedMovies = topRatedMovies.slice(0, 8);
   const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
@@ -79,7 +80,7 @@ const TopRated = () => {
           </div>
         </div>
         <div className="row tr-movie-active">
-          {topRatedMovies.map((movie: IMovieData, i) => (
+          {newTopRatedMovies.map((movie: IMovieData, i) => (
             <div
               key={i}
               className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
@@ -99,7 +100,7 @@ const TopRated = () => {
                 <div className="movie-content">
                   <div className="top">
                     <h5 className="title">
-                      <a href="movie-details.html">
+                      <a href="/">
                         {movie.original_title || movie.original_name}
                       </a>
                     </h5>
