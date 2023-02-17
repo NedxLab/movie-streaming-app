@@ -13,7 +13,7 @@ const WorldBest = () => {
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
   return (
-    <section className="ucm-area ucm-bg">
+    <section className="ucm-area ucm-bg mt-5">
       <div className="ucm-bg-shape"></div>
       <div className="container stream">
         <div className="row align-items-end mb-55">

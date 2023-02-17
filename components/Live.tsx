@@ -25,7 +25,7 @@ const Live = () => {
                 </div>
                 <div className="active-customer">
                   <h4>
-                    <span className="odometer" data-count="20"></span>K+
+                    <span className="odometer"></span>20K+
                   </h4>
                   <p>Active Customer</p>
                 </div>
