@@ -1,3 +1,6 @@
+import Image from "next/image";
+import logo from "../public/bg/logo.png";
+
 const Navbar = () => {
   return (
     <header>
@@ -11,33 +14,17 @@ const Navbar = () => {
               <div className="menu-wrap">
                 <nav className="menu-nav show">
                   <div className="logo">
-                    <a href="index.html">
-                      <img src="../public/logo/logo.png" alt="Logo" />
+                    <a href="/">
+                      <Image src={logo} width={100} height={100} alt="Logo" />
                     </a>
                   </div>
                   <div className="navbar-wrap main-menu d-none d-lg-flex">
                     <ul className="navigation">
-                      <li className="active menu-item-has-children">
+                      <li className="active ">
                         <a href="#">Home</a>
-                        <ul className="submenu">
-                          <li className="active">
-                            <a href="index.html">Home One</a>
-                          </li>
-                          <li>
-                            <a href="index-2.html">Home Two</a>
-                          </li>
-                        </ul>
                       </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Movie</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="movie.html">Movie</a>
-                          </li>
-                          <li>
-                            <a href="movie-details.html">Movie Details</a>
-                          </li>
-                        </ul>
+                      <li className="">
+                        <a href="#">Movies</a>
                       </li>
                       <li>
                         <a href="tv-show.html">tv show</a>
@@ -45,16 +32,8 @@ const Navbar = () => {
                       <li>
                         <a href="pricing.html">Pricing</a>
                       </li>
-                      <li className="menu-item-has-children">
+                      <li className="">
                         <a href="#">blog</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="blog.html">Our Blog</a>
-                          </li>
-                          <li>
-                            <a href="blog-details.html">Blog Details</a>
-                          </li>
-                        </ul>
                       </li>
                       <li>
                         <a href="contact.html">contacts</a>
@@ -72,19 +51,7 @@ const Navbar = () => {
                           <i className="fas fa-search"></i>
                         </a>
                       </li>
-                      <li className="header-lang">
-                        <form action="#">
-                          <div className="icon">
-                            <i className="flaticon-globe"></i>
-                          </div>
-                          <select id="lang-dropdown">
-                            <option value="">En</option>
-                            <option value="">Au</option>
-                            <option value="">AR</option>
-                            <option value="">TU</option>
-                          </select>
-                        </form>
-                      </li>
+
                       <li className="header-btn">
                         <a href="#" className="btn">
                           Sign In
@@ -103,8 +70,8 @@ const Navbar = () => {
 
                 <nav className="menu-box">
                   <div className="nav-logo">
-                    <a href="index.html">
-                      <img src="../public/logo/logo.png" alt="" title="" />
+                    <a href="/">
+                      <Image src={logo} width={100} height={100} alt="Logo" />
                     </a>
                   </div>
                   <div className="menu-outer">

@@ -2,14 +2,18 @@ import movieData from "./stream";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "../redux/store";
+import { IMovieData } from "../types/types";
 
 const WorldBest = () => {
-  const { fetchedPopularMovies } = useSelector((store) => store.popularMovies);
-  const dispatch = useDispatch();
+  const { fetchedPopularMovies } = useSelector(
+    (store: RootState) => store.popularMovies
+  );
+  const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
   return (
-    <section className="ucm-area ucm-bg">
+    <section className="ucm-area ucm-bg mt-5">
       <div className="ucm-bg-shape"></div>
       <div className="container stream">
         <div className="row align-items-end mb-55">
@@ -28,7 +32,7 @@ const WorldBest = () => {
             aria-labelledby="tvShow-tab"
           >
             <div className="ucm-active flex overflow-x-auto">
-              {fetchedPopularMovies.map((movie, i) => (
+              {fetchedPopularMovies.map((movie: IMovieData, i: number) => (
                 <div className="movie-item m-4 " key={i}>
                   <div className=" ">
                     <a href="#">
