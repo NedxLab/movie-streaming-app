@@ -15,12 +15,17 @@ import WorldBest from "../components/WorldBest";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../redux/features/movieSlice";
+import { getTopRatedMovies } from "../redux/features/topRatedSlice";
+import { getPopularMovies } from "../redux/features/popularSlice";
+import type { RootState, AppDispatch } from "../redux/store";
 
 export default function Home() {
   // const { loading } = useSelector((store) => store.movies);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovies());
+    dispatch(getTopRatedMovies());
+    dispatch(getPopularMovies());
   }, []);
   return (
     <>

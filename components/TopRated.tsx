@@ -1,11 +1,14 @@
-import movieData from "./stream";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
+import type { RootState, AppDispatch } from "../redux/store";
+import { IMovieData } from "../types/types";
 
 const TopRated = () => {
-  const { topRatedMovies } = useSelector((store) => store.topRatedMovies);
-  const dispatch = useDispatch();
+  const { topRatedMovies } = useSelector(
+    (store: RootState) => store.topRatedMovies
+  );
+  const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
   // var topRatedMovies = [];
@@ -76,7 +79,7 @@ const TopRated = () => {
           </div>
         </div>
         <div className="row tr-movie-active">
-          {topRatedMovies.map((movie, i) => (
+          {topRatedMovies.map((movie: IMovieData, i) => (
             <div
               key={i}
               className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
@@ -87,6 +90,8 @@ const TopRated = () => {
                     <Image
                       src={imageUrl + movie.poster_path}
                       alt="image"
+                      width={600}
+                      height={400}
                       className="rounded-2xl h-96"
                     />
                   </a>

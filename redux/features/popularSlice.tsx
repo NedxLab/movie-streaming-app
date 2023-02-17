@@ -3,10 +3,14 @@ import axios from "axios";
 
 const baseUrl = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
-
 const url = `${baseUrl}/movie/popular?api_key=${API_KEY}&language=en-US`;
 
-const initialState = {
+interface IPopularMovieState {
+  fetchedPopularMovies: [];
+  loading: false | true;
+}
+
+const initialState: IPopularMovieState = {
   fetchedPopularMovies: [],
   loading: false,
 };
@@ -17,7 +21,7 @@ export const getPopularMovies = createAsyncThunk(
       const response = await axios(url);
       return response.data;
     } catch {
-      (error) => console.log(error);
+      (error: unknown) => console.log(error);
     }
   }
 );
@@ -25,17 +29,27 @@ const popularSlice = createSlice({
   name: "popularMovies",
   initialState,
   reducers: {},
-  extraReducers: {
-    [getPopularMovies.pending]: (state) => {
-      state.loading = true;
-    },
-    [getPopularMovies.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(getPopularMovies.pending, (state, action) => {
+      // Add user to the state array
+      console.log("its working");
+
+      state.loading = false;
+    });
+    builder.addCase(getPopularMovies.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log("its working");
+
       state.loading = false;
       state.fetchedPopularMovies = action.payload.results;
-    },
-    [getPopularMovies.rejected]: (state, action) => {
+    });
+    builder.addCase(getPopularMovies.rejected, (state, action) => {
+      // Add user to the state array
+      console.log("it was rejected");
+
       state.loading = false;
-    },
+    });
   },
 });
 // export const { popularSlice } =
