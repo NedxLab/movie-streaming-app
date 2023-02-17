@@ -17,27 +17,11 @@ const Navbar = () => {
                   </div>
                   <div className="navbar-wrap main-menu d-none d-lg-flex">
                     <ul className="navigation">
-                      <li className="active menu-item-has-children">
+                      <li className="active ">
                         <a href="#">Home</a>
-                        <ul className="submenu">
-                          <li className="active">
-                            <a href="index.html">Home One</a>
-                          </li>
-                          <li>
-                            <a href="index-2.html">Home Two</a>
-                          </li>
-                        </ul>
                       </li>
-                      <li className="menu-item-has-children">
-                        <a href="#">Movie</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="movie.html">Movie</a>
-                          </li>
-                          <li>
-                            <a href="movie-details.html">Movie Details</a>
-                          </li>
-                        </ul>
+                      <li className="">
+                        <a href="#">Movies</a>
                       </li>
                       <li>
                         <a href="tv-show.html">tv show</a>

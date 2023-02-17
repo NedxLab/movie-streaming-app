@@ -2,8 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import services from "../public/bg/services_bg.jpg";
-import movies from "../public/bg/tr_movies_bg.jpg";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
 import Hero from "../components/Hero";
@@ -20,7 +18,9 @@ import { getPopularMovies } from "../redux/features/popularSlice";
 import type { RootState, AppDispatch } from "../redux/store";
 
 export default function Home() {
-  // const { loading } = useSelector((store) => store.movies);
+  const { topRatedMovies } = useSelector(
+    (store: RootState) => store.topRatedMovies
+  );
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovies());
@@ -34,7 +34,7 @@ export default function Home() {
         <title>Movie App</title>{" "}
       </Head>
       <Navbar />
-      <Hero />
+      <Hero movies={topRatedMovies} />
       <OnlineStream />
       <MovieAd />
       <TopRated />
