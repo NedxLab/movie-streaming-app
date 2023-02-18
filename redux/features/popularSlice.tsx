@@ -39,7 +39,7 @@ const popularSlice = createSlice({
     });
     builder.addCase(getPopularMovies.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log("its working");
+      // console.log("its working");
 
       state.loading = false;
       state.fetchedPopularMovies = action.payload.results;

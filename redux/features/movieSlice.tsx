@@ -3,6 +3,7 @@ import axios from "axios";
 
 interface movieState {
   fetchedMovies: [];
+  unfilteredMovies: [];
   loading: false | true;
 }
 
@@ -12,6 +13,7 @@ const url = `${baseUrl}/movie/upcoming?api_key=${API_KEY}&language=en-US`;
 
 const initialState = {
   fetchedMovies: [],
+  unfilteredMovies: [],
   loading: false,
 } as movieState;
 
@@ -28,7 +30,13 @@ export const getMovies = createAsyncThunk("movies/getMovies", async () => {
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    getAction: (state, { payload }) => {
+      state.fetchedMovies = state.unfilteredMovies.filter((movie) =>
+        movie.genre_ids.includes(payload)
+      );
+    },
+  },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getMovies.pending, (state, action) => {
@@ -43,6 +51,7 @@ const movieSlice = createSlice({
 
       state.loading = false;
       state.fetchedMovies = action.payload.results;
+      state.unfilteredMovies = action.payload.results;
     });
     builder.addCase(getMovies.rejected, (state, action) => {
       // Add user to the state array
@@ -52,6 +61,5 @@ const movieSlice = createSlice({
     });
   },
 });
-// export const { movieSlice } =
-//   cartSlice.actions;
+export const { getAction } = movieSlice.actions;
 export default movieSlice.reducer;

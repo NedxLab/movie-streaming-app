@@ -1,7 +1,32 @@
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import logo from "../public/bg/logo.png";
+import { BiSearch } from "react-icons/bi";
+import {
+  FaBars,
+  FaTimes,
+  FaFacebookF,
+  FaLinkedin,
+  FaTwitter,
+  FaPinterest,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const variants = {
+  open: { x: 0, height: "100vh", opacity: 1, display: "flex" },
+  closed: {
+    opacity: 1,
+    x: 840,
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};
 
 const Navbar = () => {
+  const [toggle, setToggle] = useState(false);
   return (
     <header>
       <div id="sticky-header" className="menu-area transparent-header">
@@ -9,7 +34,7 @@ const Navbar = () => {
           <div className="row">
             <div className="col-12">
               <div className="mobile-nav-toggler">
-                <i className="fas fa-bars"></i>
+                <FaBars onClick={() => setToggle(true)} />
               </div>
               <div className="menu-wrap">
                 <nav className="menu-nav show">
@@ -21,41 +46,31 @@ const Navbar = () => {
                   <div className="navbar-wrap main-menu d-none d-lg-flex">
                     <ul className="navigation">
                       <li className="active ">
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                       </li>
                       <li className="">
-                        <a href="#">Movies</a>
+                        <a href="/movies">Movies</a>
                       </li>
                       <li>
-                        <a href="tv-show.html">tv show</a>
+                        <a href="/tv-shows">tv shows</a>
                       </li>
                       <li>
-                        <a href="pricing.html">Pricing</a>
-                      </li>
-                      <li className="">
-                        <a href="#">blog</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">contacts</a>
+                        <a href="/pricing">Pricing</a>
                       </li>
                     </ul>
                   </div>
                   <div className="header-action d-none d-md-block">
                     <ul>
-                      <li className="header-search">
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#search-modal"
-                        >
-                          <i className="fas fa-search"></i>
-                        </a>
-                      </li>
-
-                      <li className="header-btn">
-                        <a href="#" className="btn">
-                          Sign In
-                        </a>
+                      <li className="footer-search hidden lg:block">
+                        <form action="/">
+                          <input
+                            type="text"
+                            placeholder="Find Favorite Movie"
+                          />
+                          <button>
+                            <BiSearch />
+                          </button>
+                        </form>
                       </li>
                     </ul>
                   </div>
@@ -63,74 +78,72 @@ const Navbar = () => {
               </div>
 
               {/* <!-- Mobile Menu  --> */}
-              <div className="mobile-menu">
-                <div className="close-btn">
-                  <i className="fas fa-times"></i>
+              <motion.div
+                initial={{ height: "100vh", display: "none" }}
+                animate={toggle ? "open" : "closed"}
+                variants={variants}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                className="mobile-menu"
+              >
+                <div className="close-btn d-lg-none">
+                  <FaTimes onClick={() => setToggle(false)} />
                 </div>
 
-                <nav className="menu-box">
+                <nav className="menu-box d-lg-none">
                   <div className="nav-logo">
                     <a href="/">
                       <Image src={logo} width={100} height={100} alt="Logo" />
                     </a>
                   </div>
                   <div className="menu-outer">
-                    {/* <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--> */}
+                    <ul className="navigation">
+                      <li className="active ">
+                        <a href="/">Home</a>
+                      </li>
+                      <li className="">
+                        <a href="/movies">Movies</a>
+                      </li>
+                      <li>
+                        <a href="/tv-shows">tv shows</a>
+                      </li>
+                      <li>
+                        <a href="/pricing">Pricing</a>
+                      </li>
+                    </ul>
                   </div>
                   <div className="social-links">
                     <ul className="clearfix">
                       <li>
-                        <a href="#">
-                          <span className="fab fa-twitter"></span>
+                        <a href="/">
+                          <FaTwitter />
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <span className="fab fa-facebook-square"></span>
+                        <a href="/">
+                          <FaFacebookF />
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <span className="fab fa-pinterest-p"></span>
+                        <a href="/">
+                          <FaPinterest />
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <span className="fab fa-instagram"></span>
+                        <a href="/">
+                          <FaInstagram />
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <span className="fab fa-youtube"></span>
+                        <a href="/">
+                          <FaYoutube />
                         </a>
                       </li>
                     </ul>
                   </div>
                 </nav>
-              </div>
+              </motion.div>
               <div className="menu-backdrop"></div>
               {/* <!-- End Mobile Menu --> */}
-
-              {/* <!-- Modal Search --> */}
-              <div
-                className="modal fade"
-                id="search-modal"
-                // tabindex="-1"
-                role="dialog"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <form>
-                      <input type="text" placeholder="Search here..." />
-                      <button>
-                        <i className="fas fa-search"></i>
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              {/* <!-- Modal Search-end --> */}
             </div>
           </div>
         </div>

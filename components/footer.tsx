@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaPinterest,
 } from "react-icons/fa";
+import { BiSearch } from "react-icons/bi";
 
 const Footer = () => {
   return (
@@ -32,26 +33,24 @@ const Footer = () => {
                   <nav>
                     <ul className="navigation">
                       <li>
-                        <a href="index.html">Home</a>
+                        <a href="i/">Home</a>
                       </li>
                       <li>
-                        <a href="index.html">Movie</a>
+                        <a href="/movies">Movie</a>
                       </li>
                       <li>
-                        <a href="index.html">tv show</a>
+                        <a href="/tv-shows">tv show</a>
                       </li>
+
                       <li>
-                        <a href="index.html">pages</a>
-                      </li>
-                      <li>
-                        <a href="pricing.html">Pricing</a>
+                        <a href="/pricing">Pricing</a>
                       </li>
                     </ul>
                     <div className="footer-search">
-                      <form action="#">
+                      <form action="/">
                         <input type="text" placeholder="Find Favorite Movie" />
                         <button>
-                          <i className="fas fa-search"></i>
+                          <BiSearch />
                         </button>
                       </form>
                     </div>
@@ -66,16 +65,16 @@ const Footer = () => {
                 <div className="quick-link-list">
                   <ul>
                     <li>
-                      <a href="#">FAQ</a>
+                      <a href="/">FAQ</a>
                     </li>
                     <li>
-                      <a href="#">Help Center</a>
+                      <a href="/">Help Center</a>
                     </li>
                     <li>
-                      <a href="#">Terms of Use</a>
+                      <a href="/">Terms of Use</a>
                     </li>
                     <li>
-                      <a href="#">Privacy</a>
+                      <a href="/">Privacy</a>
                     </li>
                   </ul>
                 </div>
@@ -84,22 +83,22 @@ const Footer = () => {
                 <div className="footer-social">
                   <ul>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <FaFacebookF className="text-base inline" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <FaTwitter className="text-base inline" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <FaPinterest className="text-base inline" />
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <FaLinkedin className="text-base inline" />
                       </a>
                     </li>

@@ -116,7 +116,7 @@ a:focus,
 a:hover,
 .portfolio-cat a:hover,
 .footer -menu li a:hover {
-  color: #2b96cc;
+  color: #c8c82c;
   text-decoration: none;
 }
 a,
@@ -758,8 +758,6 @@ label {
   padding-right: 30px;
   max-width: 100%;
   height: 100%;
-  opacity: 0;
-  visibility: hidden;
   z-index: 99;
   border-radius: 0px;
   transition: all 700ms ease;
@@ -767,9 +765,6 @@ label {
   -webkit-transition: all 700ms ease;
   -ms-transition: all 700ms ease;
   -o-transition: all 700ms ease;
-  -webkit-transform: translateX(101%);
-  -ms-transform: translateX(101%);
-  transform: translateX(101%);
 }
 .mobile-menu .navbar-collapse {
   display: block !important;
@@ -791,6 +786,9 @@ label {
 }
 .mobile-menu .navigation li.current > a:before {
   height: 100%;
+}
+svg {
+  display: inline;
 }
 .menu-backdrop {
   position: fixed;
@@ -1751,7 +1749,7 @@ label {
   align-items: center;
   flex-wrap: wrap;
 }
-.pagination-wrap ul li a {
+.pagination-wrap ul li button {
   display: block;
   font-size: 14px;
   color: #c2c2c2;
@@ -1759,8 +1757,8 @@ label {
   padding: 10px 20px;
   border: 1.5px solid #c2c2c2;
 }
-.pagination-wrap ul li.active a,
-.pagination-wrap ul li a:hover {
+.pagination-wrap ul li.active button,
+.pagination-wrap ul li button:hover {
   color: #171d22;
   border-color: #e4d804;
   background: #e4d804;

@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
 import Hero from "../components/Hero";
 import OnlineStream from "../components/OnlineStreaming";
 import MovieAd from "../components/MovieAd";
@@ -13,10 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../redux/features/movieSlice";
 import { getTopRatedMovies } from "../redux/features/topRatedSlice";
 import { getPopularMovies } from "../redux/features/popularSlice";
+import { getPopularShows } from "../redux/features/tvshowsSlice";
 import type { RootState, AppDispatch } from "../redux/store";
 import type { NextPageWithLayout } from "./_app";
 import type { ReactElement } from "react";
-import Layout from "../components/Layout";
 
 const Home: NextPageWithLayout = () => {
   const { topRatedMovies } = useSelector(

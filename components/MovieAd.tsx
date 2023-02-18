@@ -8,8 +8,9 @@ import { TbDeviceTvOld } from "react-icons/tb";
 import Link from "next/link";
 
 const MovieAd = () => {
-  const { fetchedMovies } = useSelector((store: RootState) => store.movies);
+  const { unfilteredMovies } = useSelector((store: RootState) => store.movies);
   const imageUrl = "https://image.tmdb.org/t/p/original";
+  let fetchedMovies = unfilteredMovies;
   const [noMovies, setNoMovies] = useState(false);
   const [randomNumber, setRandomNumber] = useState<number>(0);
 

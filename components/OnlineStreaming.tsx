@@ -5,14 +5,23 @@ import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import { AiFillStar } from "react-icons/ai";
 import Link from "next/link";
+import { getAction } from "../redux/features/movieSlice";
+import { getMovies } from "../redux/features/movieSlice";
 
 const OnlineStream = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
   const dispatch: AppDispatch = useDispatch();
-  console.log(fetchedMovies);
-
+  const [elements, setElement] = useState("all");
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
+  function dispatchFilters(value, element) {
+    dispatch(getAction(value));
+    setElement(element);
+  }
+  function allFilters() {
+    dispatch(getMovies());
+    setElement("all");
+  }
   return (
     <>
       <section className="ucm-area ucm-bg2">
@@ -22,7 +31,7 @@ const OnlineStream = () => {
               <div className="section-title title-style-three text-center text-lg-left">
                 <span className="sub-title">ONLINE STREAMING</span>
                 <h2 className="title text-dark text-3xl font-bold">
-                  New Release Movies
+                  Newly Released Movies
                 </h2>
               </div>
             </div>
@@ -31,41 +40,42 @@ const OnlineStream = () => {
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   <li className="nav-item" role="presentation">
                     <a
-                      className="nav-link active"
-                      id="tvShow-tab"
-                      data-toggle="tab"
-                      href="#tvShow"
-                      role="tab"
-                      aria-controls="tvShow"
-                      aria-selected="true"
+                      className={
+                        elements === "all" ? "nav-link active" : "nav-link"
+                      }
+                      onClick={() => allFilters()}
                     >
-                      TV Shows
+                      All
                     </a>
                   </li>
                   <li className="nav-item" role="presentation">
                     <a
-                      className="nav-link"
-                      id="movies-tab"
-                      data-toggle="tab"
-                      href="#movies"
-                      role="tab"
-                      aria-controls="movies"
-                      aria-selected="false"
+                      className={
+                        elements === "action" ? "nav-link active" : "nav-link"
+                      }
+                      onClick={() => dispatchFilters(28, "action")}
                     >
-                      Movies
+                      Action
                     </a>
                   </li>
                   <li className="nav-item" role="presentation">
                     <a
-                      className="nav-link"
-                      id="anime-tab"
-                      data-toggle="tab"
-                      href="#anime"
-                      role="tab"
-                      aria-controls="anime"
-                      aria-selected="false"
+                      className={
+                        elements === "anime" ? "nav-link active" : "nav-link"
+                      }
+                      onClick={() => dispatchFilters(16, "anime")}
                     >
-                      Anime
+                      Animations
+                    </a>
+                  </li>
+                  <li className="nav-item" role="presentation">
+                    <a
+                      className={
+                        elements === "drama" ? "nav-link active" : "nav-link"
+                      }
+                      onClick={() => dispatchFilters(18, "drama")}
+                    >
+                      Drama
                     </a>
                   </li>
                 </ul>
@@ -73,13 +83,8 @@ const OnlineStream = () => {
             </div>
           </div>
           <div className="tab-content" id="myTabContent">
-            <div
-              className="tab-pane fade show active"
-              id="tvShow"
-              role="tabpanel"
-              aria-labelledby="tvShow-tab"
-            >
-              <div className="ucm-active-two flex flex-row space-x-5 mt-4">
+            <div className="tab-pane fade show active">
+              <div className="ucm-active-two flex flex-row space-x-5 overflow-x-auto mt-4">
                 {fetchedMovies.map((movie: IMovieData, i: number) => (
                   <div className="movie-item movie-item-two mb-30" key={i}>
                     <div className="movie-poster">

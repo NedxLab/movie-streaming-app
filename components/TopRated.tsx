@@ -4,62 +4,27 @@ import React, { useState, useEffect } from "react";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import Link from "next/link";
+import { getFilter } from "../redux/features/topRatedSlice";
+import { getTopRatedMovies } from "../redux/features/topRatedSlice";
 
 const TopRated = () => {
+  const [elements, setElement] = useState("all");
   const { topRatedMovies } = useSelector(
     (store: RootState) => store.topRatedMovies
   );
-  console.log(topRatedMovies);
 
   const newTopRatedMovies = topRatedMovies.slice(0, 8);
   const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
-  // var topRatedMovies = [];
-  // const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
-  // const [active, setActive] = useState("");
-  // const filterTopRatedMovies = (genre) => {
-  //   setActive(genre);
-  //   topRatedMovies = [];
-  //   var movies = movieData.filter((movie) => movie.genre === genre);
-
-  //   movies = movies.length < 1 ? movieData : movies;
-  //   let topRated = movies.map((movie, index) => {
-  //     return parseFloat(movie.rating);
-  //   });
-  //   topRated = topRated.sort(function (a, b) {
-  //     return b - a;
-  //   });
-
-  //   topRated = topRated.slice(0, 4);
-  //   // console.log(topRated);
-
-  //   var filteredMovies = topRated.map((newmovie) => {
-  //     // console.log(newmovie);
-  //     return movies.filter((movie) => parseFloat(movie.rating) === newmovie);
-  //   });
-
-  //   filteredMovies.map((movie) => {
-  //     if (Array.isArray(movie)) {
-  //       movie.map((movie) => {
-  //         topRatedMovies.push(movie);
-  //       });
-  //     } else {
-  //       topRatedMovies.push(movie);
-  //     }
-  //   });
-  //   // console.log([...new Set(topRatedMovies)]);
-  //   topRatedMovies = [...new Set(topRatedMovies)];
-  //   // console.log(topRatedMovies);
-
-  //   // return (
-  //   topRatedMovies = topRatedMovies.slice(0, 4);
-  //   setFilteredTopRatedMovies(topRatedMovies);
-  //   // );
-  // // };
-  // useEffect(() => {
-  //   filterTopRatedMovies("all");
-  // }, []);
+  function dispatchFilters(value, element) {
+    dispatch(getFilter(value));
+    setElement(element);
+  }
+  function allFilters() {
+    dispatch(getTopRatedMovies());
+    setElement("all");
+  }
 
   return (
     <section className="top-rated-movie tr-movie-bg">
@@ -75,10 +40,30 @@ const TopRated = () => {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="tr-movie-menu-active text-center">
-              <button className={"active"}>All</button>
-              <button className={""}>Series</button>
-              <button className={""}>Action</button>
-              <button className={""}>shows</button>
+              <button
+                className={elements === "all" ? " active" : ""}
+                onClick={() => allFilters()}
+              >
+                All
+              </button>
+              <button
+                className={elements === "comedy" ? " active" : ""}
+                onClick={() => dispatchFilters(35, "comedy")}
+              >
+                Comedy
+              </button>
+              <button
+                className={elements === "action" ? " active" : ""}
+                onClick={() => dispatchFilters(28, "action")}
+              >
+                Action
+              </button>
+              <button
+                className={elements === "crime" ? " active" : ""}
+                onClick={() => dispatchFilters(80, "crime")}
+              >
+                Crime
+              </button>
             </div>
           </div>
         </div>
