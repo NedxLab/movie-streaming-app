@@ -2,8 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
 import Hero from "../components/Hero";
 import OnlineStream from "../components/OnlineStreaming";
 import MovieAd from "../components/MovieAd";
@@ -16,8 +14,11 @@ import { getMovies } from "../redux/features/movieSlice";
 import { getTopRatedMovies } from "../redux/features/topRatedSlice";
 import { getPopularMovies } from "../redux/features/popularSlice";
 import type { RootState, AppDispatch } from "../redux/store";
+import type { NextPageWithLayout } from "./_app";
+import type { ReactElement } from "react";
+import Layout from "../components/Layout";
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   const { topRatedMovies } = useSelector(
     (store: RootState) => store.topRatedMovies
   );
@@ -33,7 +34,7 @@ export default function Home() {
         {" "}
         <title>Movie App</title>{" "}
       </Head>
-      <Navbar />
+
       <Hero movies={topRatedMovies} />
       <OnlineStream />
       <MovieAd />
@@ -68,7 +69,12 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
-}
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return page;
+};
+
+export default Home;

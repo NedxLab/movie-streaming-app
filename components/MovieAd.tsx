@@ -5,6 +5,7 @@ import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import { GiSteampunkGoggles } from "react-icons/gi";
 import { TbDeviceTvOld } from "react-icons/tb";
+import Link from "next/link";
 
 const MovieAd = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
@@ -44,7 +45,13 @@ const MovieAd = () => {
                 <div className="section-title title-style-two mb-20">
                   <span className="sub-title">featured movie</span>
                   <h2 className="title">
-                    {fetchedMovies[randomNumber].original_title}
+                    <Link
+                      href={`/movie/${encodeURIComponent(
+                        fetchedMovies[randomNumber].id
+                      )}`}
+                    >
+                      {fetchedMovies[randomNumber].original_title}
+                    </Link>
                   </h2>
                 </div>
                 <p>{fetchedMovies[randomNumber].overview}</p>

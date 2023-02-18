@@ -7,6 +7,7 @@ import { HiStar } from "react-icons/hi";
 import LazyLoad from "react-lazy-load";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const tmdbPosterPath = "https://image.tmdb.org/t/p/w300_and_h450_face/";
 const tmdbBackdropPath = "https://image.tmdb.org/t/p/original";
@@ -27,7 +28,11 @@ const MovieSliderItem: React.FC<{ movie: IMovieData | null }> = ({ movie }) => {
         )}
         <div className="movie__slider-content">
           <div className="movie__slider-description text-3xl">
-            <h1>{movie?.original_title || <Skeleton width={"50%"} />}</h1>
+            <h1>
+              <Link href={`/movie/${encodeURIComponent(movie?.id)}`}>
+                {movie?.original_title || <Skeleton width={"50%"} />}
+              </Link>
+            </h1>
             <p className="movie__slider-rating text-base">
               {movie?.vote_average ? (
                 <>
