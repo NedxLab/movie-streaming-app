@@ -13,7 +13,6 @@ const imageUrl = "https://image.tmdb.org/t/p/original";
 
 const MovieDetails = ({ movies, similar, release }) => {
   release = release.slice(1, 6);
-  console.log(movies);
 
   return (
     <>

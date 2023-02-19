@@ -22,7 +22,7 @@ const MovieAd = () => {
     }
     setRandomNumber(Math.floor(Math.random() * 15));
   }, [fetchedMovies]);
-
+  let featuredMovie: IMovieData = fetchedMovies[randomNumber];
   return (
     <section
       className="services-area services-bg"
@@ -34,7 +34,7 @@ const MovieAd = () => {
             <div className="col-lg-6">
               <div className="services-img-wrap">
                 <Image
-                  src={imageUrl + fetchedMovies[randomNumber].backdrop_path}
+                  src={imageUrl + featuredMovie.backdrop_path}
                   width={900}
                   height={400}
                   alt="movie trailer"
@@ -47,15 +47,13 @@ const MovieAd = () => {
                   <span className="sub-title">featured movie</span>
                   <h2 className="title">
                     <Link
-                      href={`/movie/${encodeURIComponent(
-                        fetchedMovies[randomNumber].id
-                      )}`}
+                      href={`/movie/${encodeURIComponent(featuredMovie.id)}`}
                     >
-                      {fetchedMovies[randomNumber].original_title}
+                      {featuredMovie.original_title}
                     </Link>
                   </h2>
                 </div>
-                <p>{fetchedMovies[randomNumber].overview}</p>
+                <p>{featuredMovie.overview}</p>
                 <div className="services-list">
                   <ul>
                     <li>

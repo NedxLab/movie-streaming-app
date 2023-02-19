@@ -8,8 +8,10 @@ import bg from "../public/bg/pricing_bg.jpg";
 import { getPopularShows } from "../redux/features/tvshowsSlice";
 import { BsEyeFill, BsFillHandThumbsUpFill } from "react-icons/bs";
 import { showpage } from "../redux/features/tvshowsSlice";
+import { IMovieData } from "../types/types";
 
 const TvShows = () => {
+  const pages = [1, 2, 3, 4, 5, 6];
   const { fetchedPopularShows } = useSelector(
     (store: RootState) => store.popularShows
   );
@@ -21,13 +23,16 @@ const TvShows = () => {
     dispatch(getPopularShows());
   }, []);
 
-  function dispatchFilters(value) {
-    dispatch(showpage(value));
-    setElement(value);
-  }
-  function allFilters() {
-    dispatch(getPopularShows());
-    setElement(1);
+  function dispatchFilters(value: number) {
+    if (value === 7) {
+      dispatch(showpage(6));
+      dispatch(getPopularShows());
+      setElement(6);
+    } else {
+      dispatch(showpage(value));
+      dispatch(getPopularShows());
+      setElement(value);
+    }
   }
   return (
     <main>
@@ -71,8 +76,11 @@ const TvShows = () => {
             </div>
           </div>
           <div className="row tr-movie-active">
-            {fetchedPopularShows.map((show, i) => (
-              <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two my-3">
+            {fetchedPopularShows.map((show: IMovieData, i) => (
+              <div
+                className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two my-3"
+                key={i}
+              >
                 <div className="movie-item movie-item-three mb-50">
                   <div className="movie-poster">
                     <Image
@@ -80,7 +88,7 @@ const TvShows = () => {
                       alt="image"
                       height={303}
                       width={430}
-                      className="rounded-2xl min-w-[14rem] max-w-[14rem] w-56 h-60"
+                      className="rounded-2xl "
                     />
                     <ul className="overlay-btn">
                       <li className="rating">
@@ -139,28 +147,19 @@ const TvShows = () => {
               <div className="pagination-wrap mt-30">
                 <nav>
                   <ul>
-                    <li className={elements === 1 ? " active" : ""}>
-                      <button href="#" onClick={() => allFilters()}>
-                        1
-                      </button>
-                    </li>
-                    <li className={elements === 2 ? " active" : ""}>
-                      <button href="#" onClick={() => dispatchFilters(2)}>
-                        2
-                      </button>
-                    </li>
-                    <li className={elements === 3 ? " active" : ""}>
-                      <button href="#" onClick={() => dispatchFilters(3)}>
-                        3
-                      </button>
-                    </li>
-                    <li className={elements === 4 ? " active" : ""}>
-                      <button href="#" onClick={() => dispatchFilters(4)}>
-                        4
-                      </button>
-                    </li>
+                    {pages.map((page, i) => (
+                      <li
+                        className={elements === page ? " active" : ""}
+                        key={i}
+                      >
+                        <button onClick={() => dispatchFilters(page)}>
+                          {page}
+                        </button>
+                      </li>
+                    ))}
+
                     <li>
-                      <button href="#" onClick={() => dispatchFilters(2)}>
+                      <button onClick={() => dispatchFilters(elements + 1)}>
                         Next
                       </button>
                     </li>

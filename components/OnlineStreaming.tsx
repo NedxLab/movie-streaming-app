@@ -11,10 +11,10 @@ import { getMovies } from "../redux/features/movieSlice";
 const OnlineStream = () => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
   const dispatch: AppDispatch = useDispatch();
-  const [elements, setElement] = useState("all");
+  const [elements, setElement] = useState<string>("all");
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
-  function dispatchFilters(value, element) {
+  function dispatchFilters(value: number, element: string) {
     dispatch(getAction(value));
     setElement(element);
   }

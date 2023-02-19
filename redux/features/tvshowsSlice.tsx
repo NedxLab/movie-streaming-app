@@ -14,7 +14,7 @@ interface IPopularTvShows {
 const initialState: IPopularTvShows = {
   fetchedPopularShows: [],
   unfilteredPopularShows: [],
-  url: `${baseUrl}/tv/popular?api_key=${API_KEY}&language=en-US&page=2`,
+  url: `${baseUrl}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
   loading: false,
 };
 export const getPopularShows = createAsyncThunk(
@@ -35,7 +35,6 @@ const tvshowsSlice = createSlice({
   reducers: {
     showpage: (state, { payload }) => {
       state.url = `${baseUrl}/tv/popular?api_key=${API_KEY}&language=en-US&page=${payload}`;
-      getPopularShows();
     },
   },
   extraReducers: (builder) => {
@@ -46,11 +45,11 @@ const tvshowsSlice = createSlice({
     });
     builder.addCase(getPopularShows.fulfilled, (state, action) => {
       // Add user to the state array
-      // console.log("its working");
-
       state.loading = false;
       state.fetchedPopularShows = action.payload.results;
-      state.unfilteredPopularShows = action.payload.results;
+      if (state.unfilteredPopularShows.length === 0) {
+        state.unfilteredPopularShows = action.payload.results;
+      }
     });
     builder.addCase(getPopularShows.rejected, (state, action) => {
       // Add user to the state array

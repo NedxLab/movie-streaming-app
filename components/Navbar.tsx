@@ -13,6 +13,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const variants = {
   open: { x: 0, height: "100vh", opacity: 1, display: "flex" },
@@ -26,6 +27,8 @@ const variants = {
 };
 
 const Navbar = () => {
+  const router = useRouter();
+  const activeElement = router.pathname;
   const [toggle, setToggle] = useState(false);
   return (
     <header>
@@ -45,16 +48,26 @@ const Navbar = () => {
                   </div>
                   <div className="navbar-wrap main-menu d-none d-lg-flex">
                     <ul className="navigation">
-                      <li className="active ">
+                      <li className={activeElement === "/" ? "active" : " "}>
                         <a href="/">Home</a>
                       </li>
-                      <li className="">
+                      <li
+                        className={activeElement === "/movies" ? "active" : " "}
+                      >
                         <a href="/movies">Movies</a>
                       </li>
-                      <li>
+                      <li
+                        className={
+                          activeElement === "/tv-shows" ? "active" : " "
+                        }
+                      >
                         <a href="/tv-shows">tv shows</a>
                       </li>
-                      <li>
+                      <li
+                        className={
+                          activeElement === "/pricing" ? "active" : " "
+                        }
+                      >
                         <a href="/pricing">Pricing</a>
                       </li>
                     </ul>
@@ -97,16 +110,26 @@ const Navbar = () => {
                   </div>
                   <div className="menu-outer">
                     <ul className="navigation">
-                      <li className="active ">
+                      <li className={activeElement === "/" ? "active" : " "}>
                         <a href="/">Home</a>
                       </li>
-                      <li className="">
+                      <li
+                        className={activeElement === "/movies" ? "active" : " "}
+                      >
                         <a href="/movies">Movies</a>
                       </li>
-                      <li>
+                      <li
+                        className={
+                          activeElement === "/tv-shows" ? "active" : " "
+                        }
+                      >
                         <a href="/tv-shows">tv shows</a>
                       </li>
-                      <li>
+                      <li
+                        className={
+                          activeElement === "/pricing" ? "active" : " "
+                        }
+                      >
                         <a href="/pricing">Pricing</a>
                       </li>
                     </ul>

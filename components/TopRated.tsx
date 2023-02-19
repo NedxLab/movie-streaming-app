@@ -8,7 +8,7 @@ import { getFilter } from "../redux/features/topRatedSlice";
 import { getTopRatedMovies } from "../redux/features/topRatedSlice";
 
 const TopRated = () => {
-  const [elements, setElement] = useState("all");
+  const [elements, setElement] = useState<string>("all");
   const { topRatedMovies } = useSelector(
     (store: RootState) => store.topRatedMovies
   );
@@ -17,7 +17,7 @@ const TopRated = () => {
   const dispatch: AppDispatch = useDispatch();
   const imageUrl = "https://image.tmdb.org/t/p/original";
 
-  function dispatchFilters(value, element) {
+  function dispatchFilters(value: number, element: string) {
     dispatch(getFilter(value));
     setElement(element);
   }
