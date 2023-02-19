@@ -1,5 +1,5 @@
 import Image from "next/image";
-import drive from "../public/drive.jpg";
+import drive from "../public/hero.jpeg";
 
 const Live = () => {
   return (
@@ -15,9 +15,8 @@ const Live = () => {
             </div>
             <div className="live-movie-content">
               <p>
-                Lorem ipsum dolor sit amet, consecetur adipiscing elseddo
-                eiusmod There are many variations of passages of lorem Ipsum
-                available, but the majority have suffered alteration.
+                Watch and enjoy the best and latest movies and TV shows online
+                at your comfort without having to pay so much.
               </p>
               <div className="live-fact-wrap">
                 <div className="resolution">
@@ -30,10 +29,7 @@ const Live = () => {
                   <p>Active Customer</p>
                 </div>
               </div>
-              <a
-                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                className="btn popup-video"
-              >
+              <a href="" className="btn popup-video">
                 <i className="fas fa-play"></i> Watch Now
               </a>
             </div>

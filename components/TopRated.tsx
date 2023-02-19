@@ -6,6 +6,7 @@ import { IMovieData } from "../types/types";
 import Link from "next/link";
 import { getFilter } from "../redux/features/topRatedSlice";
 import { getTopRatedMovies } from "../redux/features/topRatedSlice";
+import { AiFillEye, AiFillStar } from "react-icons/ai";
 
 const TopRated = () => {
   const [elements, setElement] = useState<string>("all");
@@ -79,8 +80,8 @@ const TopRated = () => {
                     <Image
                       src={imageUrl + movie.poster_path}
                       alt="image"
-                      width={600}
-                      height={300}
+                      width={303}
+                      height={430}
                       className="rounded-2xl h-96"
                     />
                   </Link>
@@ -92,19 +93,23 @@ const TopRated = () => {
                         {movie.original_title || movie.original_name}
                       </Link>
                     </h5>
-                    <span className="date">{movie.release_date}</span>
+                    <span className="date">
+                      {movie.release_date.slice(0, 4)}
+                    </span>
                   </div>
                   <div className="bottom">
                     <ul>
-                      {/* <li>
-                        <span className="quality">{movie.resolution}</span>
-                      </li> */}
                       <li>
-                        {/* <span className="duration">
-                          <i className="far fa-clock"></i> {movie.duration}
-                        </span> */}
+                        <span className="quality">
+                          {movie.original_language}
+                        </span>
+                      </li>
+                      <li>
+                        <span className="duration">
+                          <AiFillEye /> {movie.vote_count}
+                        </span>
                         <span className="rating">
-                          <i className="fas fa-thumbs-up"></i>{" "}
+                          <AiFillStar />
                           {movie.vote_average}
                         </span>
                       </li>

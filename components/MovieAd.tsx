@@ -34,7 +34,10 @@ const MovieAd = () => {
             <div className="col-lg-6">
               <div className="services-img-wrap">
                 <Image
-                  src={imageUrl + featuredMovie.backdrop_path}
+                  src={
+                    imageUrl +
+                    (featuredMovie.backdrop_path || featuredMovie.poster_path)
+                  }
                   width={900}
                   height={400}
                   alt="movie trailer"

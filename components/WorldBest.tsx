@@ -6,6 +6,8 @@ import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import Link from "next/link";
 
+import { AiFillEye, AiFillStar } from "react-icons/ai";
+
 const WorldBest = () => {
   const { fetchedPopularMovies } = useSelector(
     (store: RootState) => store.popularMovies
@@ -53,19 +55,23 @@ const WorldBest = () => {
                           {movie.original_title || movie.original_name}
                         </Link>
                       </h5>
-                      <span className="date">{movie.release_date}</span>
+                      <span className="date">
+                        {movie.release_date.slice(0, 4)}
+                      </span>
                     </div>
                     <div className="bottom">
                       <ul>
-                        {/* <li>
-                          <span className="quality">{movie.resolution}</span>
-                        </li> */}
                         <li>
-                          {/* <span className="duration text-dark">
-                            <i className="far fa-clock "></i> {movie.duration}
-                          </span> */}
-                          <span className="rating text-dark">
-                            <i className="fas fa-thumbs-up "></i>{" "}
+                          <span className="quality">
+                            {movie.original_language}
+                          </span>
+                        </li>
+                        <li>
+                          <span className="duration">
+                            <AiFillEye /> {movie.vote_count}
+                          </span>
+                          <span className="rating">
+                            <AiFillStar />
                             {movie.vote_average}
                           </span>
                         </li>

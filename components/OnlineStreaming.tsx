@@ -41,7 +41,9 @@ const OnlineStream = () => {
                   <li className="nav-item" role="presentation">
                     <a
                       className={
-                        elements === "all" ? "nav-link active" : "nav-link"
+                        elements === "all"
+                          ? "nav-link cursor-pointer active"
+                          : "nav-link cursor-pointer"
                       }
                       onClick={() => allFilters()}
                     >
@@ -51,7 +53,9 @@ const OnlineStream = () => {
                   <li className="nav-item" role="presentation">
                     <a
                       className={
-                        elements === "action" ? "nav-link active" : "nav-link"
+                        elements === "action"
+                          ? "nav-link cursor-pointer active"
+                          : "nav-link cursor-pointer"
                       }
                       onClick={() => dispatchFilters(28, "action")}
                     >
@@ -61,7 +65,9 @@ const OnlineStream = () => {
                   <li className="nav-item" role="presentation">
                     <a
                       className={
-                        elements === "anime" ? "nav-link active" : "nav-link"
+                        elements === "anime"
+                          ? "nav-link cursor-pointer active"
+                          : "nav-link cursor-pointer"
                       }
                       onClick={() => dispatchFilters(16, "anime")}
                     >
@@ -71,7 +77,9 @@ const OnlineStream = () => {
                   <li className="nav-item" role="presentation">
                     <a
                       className={
-                        elements === "drama" ? "nav-link active" : "nav-link"
+                        elements === "drama"
+                          ? "nav-link cursor-pointer active"
+                          : "nav-link cursor-pointer"
                       }
                       onClick={() => dispatchFilters(18, "drama")}
                     >
@@ -111,7 +119,9 @@ const OnlineStream = () => {
                           {movie.original_title || movie.original_name}
                         </Link>
                       </h5>
-                      <span className="rel">Adventure</span>
+                      <span className="rel">
+                        {movie.release_date.slice(0, 4)}
+                      </span>
                       <div className="movie-content-bottom">
                         <ul>
                           <li className="tag">
