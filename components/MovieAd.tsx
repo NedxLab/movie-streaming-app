@@ -13,6 +13,7 @@ const MovieAd = () => {
   let fetchedMovies = unfilteredMovies;
   const [noMovies, setNoMovies] = useState(false);
   const [randomNumber, setRandomNumber] = useState<number>(0);
+  console.log(fetchedMovies);
 
   useEffect(() => {
     if (fetchedMovies.length < 1) {

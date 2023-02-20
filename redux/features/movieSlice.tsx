@@ -41,17 +41,17 @@ const movieSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getMovies.pending, (state, action) => {
       // Add user to the state array
-      console.log("its working");
 
       state.loading = false;
     });
     builder.addCase(getMovies.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log("its working");
 
       state.loading = false;
-      state.fetchedMovies = action.payload.results;
-      state.unfilteredMovies = action.payload.results;
+      if (action.payload.results) {
+        state.fetchedMovies = action.payload.results;
+        state.unfilteredMovies = action.payload.results;
+      }
     });
     builder.addCase(getMovies.rejected, (state, action) => {
       // Add user to the state array

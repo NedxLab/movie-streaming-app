@@ -75,6 +75,19 @@ export type TFilterCategory = "discover" | "tv";
 
 export type TMediaType = "movie" | "tv";
 
+export interface IReleaseDates {
+  certification: string;
+  iso_639_1: string;
+  release_date: string;
+  type: number;
+  note: string;
+}
+
+export interface IRelease {
+  iso_3166_1: string;
+  release_dates: IReleaseDates[];
+}
+
 export interface IMovieData {
   adult?: boolean;
   name?: string;

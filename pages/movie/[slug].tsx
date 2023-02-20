@@ -6,12 +6,25 @@ import firstBg from "../../public/bg/tv_series_bg02.jpg";
 import secondBg from "../../public/bg/episode_bg.jpg";
 import Link from "next/link";
 import Head from "next/head";
+import {
+  AiFillCalendar,
+  AiFillEye,
+  AiFillStar,
+  AiOutlineShareAlt,
+} from "react-icons/ai";
+import { IRelease } from "../../types/types";
 
 const baseUrl = "https://api.themoviedb.org/3/movie";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 const imageUrl = "https://image.tmdb.org/t/p/original";
 
-const MovieDetails = ({ movies, similar, release }) => {
+interface IProps {
+  movies: IMovieData;
+  similar: IMovieData;
+  release: IMovieData;
+}
+
+const MovieDetails = ({ movies, similar, release }: IProps) => {
   release = release.slice(1, 6);
 
   return (
@@ -48,18 +61,19 @@ const MovieDetails = ({ movies, similar, release }) => {
                     <ul>
                       <li className="quality">
                         <span>Pg 18</span>
-                        <span>{movies.resolution}</span>
+                        <span>{movies.original_language}</span>
                       </li>
                       <li className="category">
-                        <a href="#">Romance,</a>
-                        <a href="#">Drama</a>
+                        {movies.genres.map((genre, i) => (
+                          <a href="#">{genre.name},</a>
+                        ))}
                       </li>
                       <li className="release-time">
                         <span>
-                          <i className="far fa-calendar-alt"></i> {movies.year}
+                          <AiFillCalendar /> {movies.release_date.slice(0, 4)}
                         </span>
                         <span>
-                          <i className="far fa-clock"></i> {movies.duration}
+                          <AiFillEye /> {movies.vote_count}
                         </span>
                       </li>
                     </ul>
@@ -69,7 +83,7 @@ const MovieDetails = ({ movies, similar, release }) => {
                     <ul>
                       <li className="share">
                         <a href="#">
-                          <i className="fas fa-share-alt"></i> Share
+                          <AiOutlineShareAlt /> Share
                         </a>
                       </li>
                       <li className="streaming">
@@ -113,7 +127,7 @@ const MovieDetails = ({ movies, similar, release }) => {
                     </div>
                     <div className="total-views-count">
                       <p>
-                        2.7 million <i className="far fa-eye"></i>
+                        {movies.vote_count} <AiFillEye />
                       </p>
                     </div>
                   </div>
@@ -132,10 +146,9 @@ const MovieDetails = ({ movies, similar, release }) => {
                         <div className=" show" aria-labelledby="headingOne">
                           <div className="card-body">
                             <ul>
-                              {release.map((releases, i) => (
+                              {release.map((releases: IRelease, i: number) => (
                                 <li key={i}>
                                   <a href="/" className="popup-video">
-                                    <i className="fas fa-play"></i>
                                     {releases.iso_3166_1} -{" "}
                                     {releases.release_dates[0].note
                                       ? releases.release_dates[0].note
@@ -222,7 +235,9 @@ const MovieDetails = ({ movies, similar, release }) => {
                             {series.original_title}
                           </Link>
                         </h5>
-                        <span className="date">2021</span>
+                        <span className="date">
+                          {series.release_date.slice(0, 4)}
+                        </span>
                       </div>
                       <div className="bottom">
                         <ul>
@@ -231,10 +246,11 @@ const MovieDetails = ({ movies, similar, release }) => {
                           </li>
                           <li>
                             <span className="duration">
-                              <i className="far fa-clock"></i> 128 min
+                              <AiFillEye /> {series.vote_count}
                             </span>
                             <span className="rating">
-                              <i className="fas fa-thumbs-up"></i> 3.5
+                              <AiFillStar />
+                              {series.vote_average}
                             </span>
                           </li>
                         </ul>

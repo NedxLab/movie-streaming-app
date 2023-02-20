@@ -99,9 +99,12 @@ const TvShows = () => {
                         <AiFillStar className="inline" />
                       </li>
                       <li>
-                        <a href="/" className="popup-video btn">
+                        <Link
+                          className="popup-video btn"
+                          href={`/movie/${encodeURIComponent(show.id)}`}
+                        >
                           Watch Now
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <Link
