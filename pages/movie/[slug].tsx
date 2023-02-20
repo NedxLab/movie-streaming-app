@@ -13,16 +13,11 @@ import {
   AiOutlineShareAlt,
 } from "react-icons/ai";
 import { IRelease } from "../../types/types";
+import { IProps } from "../../types/types";
 
 const baseUrl = "https://api.themoviedb.org/3/movie";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 const imageUrl = "https://image.tmdb.org/t/p/original";
-
-interface IProps {
-  movies: IMovieData;
-  similar: IMovieData;
-  release: IMovieData;
-}
 
 const MovieDetails = ({ movies, similar, release }: IProps) => {
   release = release.slice(1, 6);

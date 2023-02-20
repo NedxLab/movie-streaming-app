@@ -126,6 +126,12 @@ export interface IMovieData {
   };
 }
 
+export interface IProps {
+  movies: IMovieData;
+  similar: IMovieData[];
+  release: IRelease[];
+}
+
 export interface IVideo {
   id: string;
   key: string;
