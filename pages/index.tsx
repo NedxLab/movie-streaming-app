@@ -14,6 +14,7 @@ import { getPopularShows } from "../redux/features/tvshowsSlice";
 import type { RootState, AppDispatch } from "../redux/store";
 import type { NextPageWithLayout } from "./_app";
 import type { ReactElement } from "react";
+import Layout from "../components/Layout";
 
 const Home: NextPageWithLayout = () => {
   const { topRatedMovies } = useSelector(

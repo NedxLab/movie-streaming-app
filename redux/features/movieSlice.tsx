@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { IMovieData } from "../../types/types";
 import axios from "axios";
 
 interface movieState {
-  fetchedMovies: [];
-  unfilteredMovies: [];
+  fetchedMovies: IMovieData[];
+  unfilteredMovies: IMovieData[];
   loading: false | true;
 }
 

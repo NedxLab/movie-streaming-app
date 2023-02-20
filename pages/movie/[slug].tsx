@@ -14,6 +14,7 @@ import {
 } from "react-icons/ai";
 import { IRelease } from "../../types/types";
 import { IProps } from "../../types/types";
+import { FaPlay } from "react-icons/fa";
 
 const baseUrl = "https://api.themoviedb.org/3/movie";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
@@ -86,11 +87,8 @@ const MovieDetails = ({ movies, similar, release }: IProps) => {
                         <span>Streaming Channels</span>
                       </li>
                       <li className="watch">
-                        <a
-                          href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                          className="btn popup-video"
-                        >
-                          <i className="fas fa-play"></i> Watch Now
+                        <a href="/" className="btn popup-video">
+                          <FaPlay /> Watch Now
                         </a>
                       </li>
                     </ul>
@@ -212,7 +210,7 @@ const MovieDetails = ({ movies, similar, release }: IProps) => {
                 <div className="col-xl-3 col-lg-4 col-sm-6 " key={i}>
                   <div className="movie-item mb-5">
                     <div className="movie-poster">
-                      <Link href={`/movie/${encodeURIComponent(series.id)}`}>
+                      <Link href={`/movie/${series.id}`}>
                         <Image
                           src={imageUrl + series.poster_path}
                           width={800}
@@ -224,9 +222,7 @@ const MovieDetails = ({ movies, similar, release }: IProps) => {
                     <div className="movie-content">
                       <div className="top">
                         <h5 className="title">
-                          <Link
-                            href={`/movie/${encodeURIComponent(series.id)}`}
-                          >
+                          <Link href={`/movie/${series.id}`}>
                             {series.original_title}
                           </Link>
                         </h5>
@@ -297,7 +293,7 @@ const MovieDetails = ({ movies, similar, release }: IProps) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { params } = context;
 
-  const url = params.slug;
+  const url = params ? params.slug : 240;
   const res = await fetch(
     `${baseUrl}/${url}?api_key=${API_KEY}&language=en-US`
   );

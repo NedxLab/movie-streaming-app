@@ -91,7 +91,7 @@ export interface IRelease {
 export interface IMovieData {
   adult?: boolean;
   name?: string;
-  id: number;
+  id?: number | string | boolean | undefined;
   poster_path: string;
   original_name?: string;
   original_title?: string;
@@ -113,6 +113,7 @@ export interface IMovieData {
   runtime: number | null;
   status: string;
   tagline: string | null;
+  movie?: string | null;
   media_type?: TMediaType;
   video?: boolean;
   videos: {

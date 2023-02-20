@@ -12,7 +12,7 @@ import Link from "next/link";
 const tmdbPosterPath = "https://image.tmdb.org/t/p/w300_and_h450_face/";
 const tmdbBackdropPath = "https://image.tmdb.org/t/p/original";
 
-const MovieSliderItem: React.FC<{ movie: IMovieData | null }> = ({ movie }) => {
+const MovieSliderItem: React.FC<{ movie: IMovieData }> = ({ movie }) => {
   const { fetchedMovies } = useSelector((store: RootState) => store.movies);
 
   return (
@@ -29,7 +29,7 @@ const MovieSliderItem: React.FC<{ movie: IMovieData | null }> = ({ movie }) => {
         <div className="movie__slider-content">
           <div className="movie__slider-description text-3xl">
             <h1>
-              <Link href={`/movie/${encodeURIComponent(movie?.id)}`}>
+              <Link href={`/movie/${movie?.id}`}>
                 {movie?.original_title || <Skeleton width={"50%"} />}
               </Link>
             </h1>
@@ -59,19 +59,15 @@ const MovieSliderItem: React.FC<{ movie: IMovieData | null }> = ({ movie }) => {
           </div>
           <div className="view__poster">
             {movie ? (
-              <LazyLoad debounce={false} offsetVertical={500}>
-                <ImageLoader
-                  alt={
-                    movie.original_title || movie.original_name || movie.title
-                  }
-                  imgId={movie.id}
-                  src={
-                    movie.poster_path
-                      ? `${tmdbPosterPath + movie.poster_path}`
-                      : "/img-placeholder.jpg"
-                  }
-                />
-              </LazyLoad>
+              <ImageLoader
+                alt={movie.original_title || movie.original_name || movie.title}
+                imgId={movie.id}
+                src={
+                  movie.poster_path
+                    ? `${tmdbPosterPath + movie.poster_path}`
+                    : "/img-placeholder.jpg"
+                }
+              />
             ) : (
               <Skeleton width={"100%"} height={"100%"} />
             )}

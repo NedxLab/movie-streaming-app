@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IMovieData } from "../../types/types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
 interface ITopRatedState {
-  topRatedMovies: [];
-  unfilteredTopRatedMovies: [];
+  topRatedMovies: IMovieData[];
+  unfilteredTopRatedMovies: IMovieData[];
   url: string;
   loading: false | true;
 }
@@ -21,7 +22,7 @@ const initialState: ITopRatedState = {
 export const getTopRatedMovies = createAsyncThunk(
   "movies/getTopRatedMovies",
   async (arg, { getState }) => {
-    const state = getState();
+    const state: any = getState();
     try {
       const response = await axios(state.topRatedMovies.url);
       return response.data;

@@ -38,7 +38,7 @@ const WorldBest = () => {
               {fetchedPopularMovies.map((movie: IMovieData, i: number) => (
                 <div className="movie-item m-4 " key={i}>
                   <div className=" ">
-                    <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                    <Link href={`/movie/${movie.id}`}>
                       <Image
                         src={imageUrl + movie.poster_path}
                         alt="image"
@@ -51,7 +51,7 @@ const WorldBest = () => {
                   <div className="movie-content mt-3 ">
                     <div className="top">
                       <h5 className="title capitalize text-dark">
-                        <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                        <Link href={`/movie/${movie.id}`}>
                           {movie.original_title || movie.original_name}
                         </Link>
                       </h5>

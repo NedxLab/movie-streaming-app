@@ -50,9 +50,7 @@ const MovieAd = () => {
                 <div className="section-title title-style-two mb-20">
                   <span className="sub-title">featured movie</span>
                   <h2 className="title">
-                    <Link
-                      href={`/movie/${encodeURIComponent(featuredMovie.id)}`}
-                    >
+                    <Link href={`/movie/${featuredMovie.id}`}>
                       {featuredMovie.original_title}
                     </Link>
                   </h2>

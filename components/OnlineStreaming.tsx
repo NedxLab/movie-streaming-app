@@ -96,7 +96,7 @@ const OnlineStream = () => {
                 {fetchedMovies.map((movie: IMovieData, i: number) => (
                   <div className="movie-item movie-item-two mb-30" key={i}>
                     <div className="movie-poster">
-                      <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                      <Link href={`/movie/${movie.id}`}>
                         <Image
                           src={imageUrl + movie.poster_path}
                           alt="image"
@@ -115,7 +115,7 @@ const OnlineStream = () => {
                         <AiFillStar />
                       </div>
                       <h5 className="title">
-                        <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                        <Link href={`/movie/${movie.id}`}>
                           {movie.original_title || movie.original_name}
                         </Link>
                       </h5>

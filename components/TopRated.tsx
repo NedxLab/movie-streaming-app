@@ -76,7 +76,7 @@ const TopRated = () => {
             >
               <div className="movie-item movie-item-two  mb-3">
                 <div className="movie-poster">
-                  <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                  <Link href={`/movie/${movie.id}`}>
                     <Image
                       src={imageUrl + movie.poster_path}
                       alt="image"
@@ -89,7 +89,7 @@ const TopRated = () => {
                 <div className="movie-content">
                   <div className="top">
                     <h5 className="title">
-                      <Link href={`/movie/${encodeURIComponent(movie.id)}`}>
+                      <Link href={`/movie/${movie.id}`}>
                         {movie.original_title || movie.original_name}
                       </Link>
                     </h5>

@@ -20,7 +20,7 @@ const initialState: IPopularTvShows = {
 export const getPopularShows = createAsyncThunk(
   "movies/getPopularShows",
   async (arg, { getState }) => {
-    const state = getState();
+    const state: any = getState();
     try {
       const response = await axios(state.popularShows.url);
       return response.data;

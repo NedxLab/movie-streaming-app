@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 
-interface IProps {
+interface ISlide {
   movies: IMovieData[];
 }
 
@@ -24,21 +24,14 @@ const sliderSettings = {
   easing: "easeInOutQuad",
   fade: true,
 };
-const Hero: React.FC<IProps> = ({ movies }) => {
+const Hero: React.FC<ISlide> = ({ movies }) => {
   return (
     <div className="movie__slider">
-      {movies.length === 0 ? (
-        <SliderItem movie={null} />
-      ) : (
-        <Slider {...sliderSettings}>
-          {movies.map((movie, index) => (
-            <SliderItem
-              key={movie.id || `movie_slider${index}`}
-              movie={movie}
-            />
-          ))}
-        </Slider>
-      )}
+      <Slider {...sliderSettings}>
+        {movies.map((movie, index) => (
+          <SliderItem key={index} movie={movie} />
+        ))}
+      </Slider>
     </div>
   );
 };

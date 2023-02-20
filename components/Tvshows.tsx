@@ -101,16 +101,13 @@ const TvShows = () => {
                       <li>
                         <Link
                           className="popup-video btn"
-                          href={`/movie/${encodeURIComponent(show.id)}`}
+                          href={`/movie/${show.id}`}
                         >
                           Watch Now
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          className="btn"
-                          href={`/movie/${encodeURIComponent(show.id)}`}
-                        >
+                        <Link className="btn" href={`/movie/${show.id}`}>
                           Details
                         </Link>
                       </li>
@@ -119,7 +116,7 @@ const TvShows = () => {
                   <div className="movie-content">
                     <div className="top">
                       <h5 className="title">
-                        <Link href={`/movie/${encodeURIComponent(show.id)}`}>
+                        <Link href={`/movie/${show.id}`}>
                           {show.original_name}
                         </Link>
                       </h5>
