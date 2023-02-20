@@ -113,7 +113,6 @@ export interface IMovieData {
   runtime: number | null;
   status: string;
   tagline: string | null;
-  movie?: string | null;
   media_type?: TMediaType;
   video?: boolean;
   videos: {
