@@ -5,16 +5,14 @@ import MovieAd from "../components/MovieAd";
 import TopRated from "../components/TopRated";
 import Live from "../components/Live";
 import WorldBest from "../components/WorldBest";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovies } from "../redux/features/movieSlice";
 import { getTopRatedMovies } from "../redux/features/topRatedSlice";
 import { getPopularMovies } from "../redux/features/popularSlice";
-import { getPopularShows } from "../redux/features/tvshowsSlice";
 import type { RootState, AppDispatch } from "../redux/store";
 import type { NextPageWithLayout } from "./_app";
 import type { ReactElement } from "react";
-import Layout from "../components/Layout";
 
 const Home: NextPageWithLayout = () => {
   const { topRatedMovies } = useSelector(

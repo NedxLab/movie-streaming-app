@@ -1,12 +1,11 @@
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../public/bg/logo.png";
 import { BiSearch } from "react-icons/bi";
 import {
   FaBars,
   FaTimes,
   FaFacebookF,
-  FaLinkedin,
   FaTwitter,
   FaPinterest,
   FaInstagram,

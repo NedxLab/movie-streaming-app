@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import type { RootState, AppDispatch } from "../redux/store";
 import { IMovieData } from "../types/types";
 import Link from "next/link";

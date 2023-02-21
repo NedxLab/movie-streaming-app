@@ -1,11 +1,8 @@
-import Image from "next/image";
 import SliderItem from "./MovieSliderItem";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
-import type { RootState, AppDispatch } from "../redux/store";
+import React from "react";
 import { IMovieData } from "../types/types";
 
 interface ISlide {

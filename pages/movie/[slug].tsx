@@ -1,6 +1,6 @@
 import { IMovieData } from "../../types/types";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import firstBg from "../../public/bg/tv_series_bg02.jpg";
 import secondBg from "../../public/bg/episode_bg.jpg";
