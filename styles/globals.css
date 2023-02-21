@@ -3018,7 +3018,6 @@ svg {
   height: 100vh;
   position: relative;
   padding: 4.8rem;
-  padding-top: rem(150);
   z-index: 2;
   display: flex;
   justify-content: space-between;
